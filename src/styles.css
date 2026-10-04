@@ -119,8 +119,8 @@ progress::-moz-progress-bar { background: var(--accent); }
 .game-page .orientation { margin-top: 14px; }
 @media (max-width: 380px) {
   .game-page .round-title { font-size: 23px; }
-  .game-page .tile-slots .element { grid-template-columns: 18px 1fr; }
+  .game-page .tile-slots .element { grid-template-columns: 12px 26px minmax(0, 1fr); column-gap: 4px; }
   .game-page .tile-slots .element strong { font-size: 18px; }
-  .game-page .tile-slots .name { font-size: 9px; }
+  .game-page .tile-slots .name { grid-column: auto; text-align: left; font-size: 10px; }
   .game-page .family-column { padding: 10px 7px; }
 }

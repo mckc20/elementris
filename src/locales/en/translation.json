@@ -101,5 +101,9 @@
     "noReview": "You placed every element correctly on your first answer without hints. Replay to strengthen your recall.",
     "reviewDetails": "Hint stages: {{hints}} · Retry answers: {{retries}}",
     "replay": "Replay practice"
+  },
+  "navigation": {
+    "brandHome": "Elementris start page",
+    "home": "Back to home"
   }
 }

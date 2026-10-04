@@ -44,3 +44,5 @@ Issue #8 places a compact DE / EN button group beside the brand in the top-right
 ## Practice and results
 
 Phase 3 keeps the same peach current tile and labelled lime/mint columns. Practice hides the family guide and destination outline until hints are requested: the first hint explains membership in the live feedback region; the second adds the existing outline and placement cue. A peach hint button stays focused as its label changes between stages. Corrections keep the placement target focused, and successful placements move focus to Next as in guided learning. Results use a mint definition list for totals and a peach review panel with element names, symbols, hint stages, and retries. The results heading receives focus; replay resets the round.
+
+The full brand symbol and wordmark act as one keyboard-accessible home button with a localized label and visible focus outline. A centered raised Back to home button sits above the footer on every started-round screen, including completion and results. Returning home focuses the introduction heading and scrolls to the top.

@@ -44,6 +44,8 @@ test('complete keyboard flow works with reduced motion and visible focus', async
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
   await page.keyboard.press('Tab');
+  await expect(page.getByRole('button', { name: 'Elementris start page' })).toBeFocused();
+  await page.keyboard.press('Tab');
   await expect(page.getByRole('button', { name: 'Deutsch', exact: true })).toBeFocused();
   await page.keyboard.press('Tab');
   await expect(page.getByRole('button', { name: 'English', exact: true })).toBeFocused();

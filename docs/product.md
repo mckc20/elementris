@@ -60,6 +60,7 @@ The implementation provides German and English for all current lesson screens, f
 - **Placements with help or correction** counts each element once if it used a hint or required another answer. This and unaided placements partition the six elements. First-answer correctness overlaps these categories rather than adding to them.
 - **Hint stages used** counts each stage requested once, up to twelve per round. **Retry answers** counts every answer after the first for each element (attempts minus one), including the eventual correct answer. Multiple wrong answers can produce multiple retries.
 - Results list every element with a hint or correction, with its hint stages and retries. Perfect unaided rounds show encouragement to replay. Players can replay practice or return to guided learning. Switching language preserves all records and results.
+- The brand symbol and wordmark return to the introduction from every screen. A centered Back to home button is available below the content on lesson, practice, guided completion, and results screens. Returning home clears the current round, preserves language selection, focuses the introduction heading, and scrolls to the top. Starting again creates fresh records.
 - Practice and results remain in memory; refresh resets the lesson. Persistence and targeted review rounds belong to Phase 4. Chromium validation covers desktop and small portrait screens in both languages, keyboard focus, reduced motion, hint stages, correction, results, and replay.
 
 ## Later scope

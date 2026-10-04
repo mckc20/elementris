@@ -101,5 +101,9 @@
     "noReview": "Du hast jedes Element bei der ersten Antwort ohne Hinweise richtig platziert. Wiederhole die Übung, um dein Wissen zu festigen.",
     "reviewDetails": "Hinweisstufen: {{hints}} · Weitere Antwortversuche: {{retries}}",
     "replay": "Übung wiederholen"
+  },
+  "navigation": {
+    "brandHome": "Elementris Startseite",
+    "home": "Zur Startseite"
   }
 }

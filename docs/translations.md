@@ -27,7 +27,7 @@ UI components and game rules do not need rewriting. The current text layout supp
 
 A valid manual choice saved in `elementris.language` wins. Otherwise only the first `navigator.languages` entry is considered, falling back to `navigator.language` when absent. Regional tags resolve to their base language case-insensitively: German includes `de-AT`, `de-DE`, and `de-CH`. Unsupported or unavailable preferences use English. A lower-priority German preference never changes an English or unsupported primary choice.
 
-Manual selection updates content, feedback, `<html lang>`, title, and description immediately and preserves the current round. Storage errors are ignored so play and switching still work. The choice survives reloads when storage is available; lesson progress itself still resets until Phase 4.
+Manual selection updates content, feedback, `<html lang>`, title, and description immediately and preserves the current round. Storage errors are ignored so play and switching still work. The choice survives reloads when storage is available; Phase 4 stores learning progress separately under `elementris.progress`; active rounds restart on reload.
 
 ## Validation
 

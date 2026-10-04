@@ -32,11 +32,13 @@ The Coming Soon page is the approved visual reference: soft lime, mint, and peac
 
 Phase 2 replaces Coming Soon with the first guided family lesson: an introduction, six untimed placements with corrections and retries, a periodic-table overview, completion, and replay. `src/content/` contains verified structured lesson data; `src/game/` holds pure progression rules; UI components render the lesson. See [lesson data and sources](docs/lesson-data.md).
 
-Phase 2 includes the local review feedback: collected names and symbols align on one row, including small phones, while retaining compact tiles. Phase 3 adds independent practice and learning results; saved progress follows in Phase 4.
+Phase 2 includes the local review feedback: collected names and symbols align on one row, including small phones, while retaining compact tiles. Phase 3 adds independent practice and learning results; saved progress and targeted review are available in Phase 4.
 
 German and English are available throughout the lesson, with a top-right DE / EN switch. A saved manual choice overrides the highest-priority browser language; unsupported preferences use English. New features must provide external JSON translations in both languages. See [translation guidance](docs/translations.md).
 
-Phase 3 offers practice directly from the introduction or after guided completion, with untimed placement of the same six elements in a freshly shuffled order each round. Family clues and destination highlights are optional. Results separate first-answer correctness from unaided recall, show hint stages and retries, and identify elements to review. Results remain in memory until replay or refresh; see [calculation decisions](docs/product.md#phase-3-implementation-choices).
+Phase 3 offers practice directly from the introduction or after guided completion, with untimed placement of the same six elements in a freshly shuffled order each round. Family clues and destination highlights are optional. Results separate first-answer correctness from unaided recall, show hint stages and retries, and identify elements to review. Round results remain in memory until replay or refresh; learning progress is saved locally. See [calculation decisions](docs/product.md#phase-3-implementation-choices).
+
+Phase 4 adds a lesson selection card with guided progress, full-practice completion, latest unaided answers, and targeted review. Placements save immediately in versioned local storage. Reloads return to lesson selection; unfinished rounds restart. Review uses the latest completed practice placement for each element, and an unaided first answer removes it from review. Reset clears learning progress while preserving language. Progress is specific to this browser/device and is not synced; unavailable storage permits play in memory. See [Phase 4 decisions](docs/product.md#phase-4-implementation-choices).
 
 ## Local development and checks
 

@@ -31,7 +31,7 @@ The Coming Soon page is the approved visual reference: soft lime, mint, and peac
 
 Phase 2 replaces Coming Soon with the first guided family lesson: an introduction, six untimed placements with corrections and retries, a periodic-table overview, completion, and replay. `src/content/` contains verified structured lesson data; `src/game/` holds pure progression rules; UI components render the lesson. See [lesson data and sources](docs/lesson-data.md).
 
-This phase is implemented locally and awaiting user feedback before a PR and Vercel preview. Independent practice and saved progress follow in later phases.
+Phase 2 includes the local review feedback: collected names and symbols align on one row, including small phones, while retaining compact tiles. Independent practice and saved progress follow in later phases.
 
 ## Local development and checks
 

@@ -48,6 +48,7 @@ for (const language of ['en', 'de']) {
   });
 
   test(`${language}: narrow portrait and enlarged text keep controls and collected names readable`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.setViewportSize({ width: 320, height: 568 });
     await page.goto('/');
     await page.getByRole('button', { name: language === 'de' ? 'Deutsch' : 'English', exact: true }).click();
@@ -67,8 +68,9 @@ for (const language of ['en', 'de']) {
     await enlargeText();
     await page.locator('.highlighted').click();
     await enlargeText();
-    const name = page.locator('.tile-slots .name').first();
-    expect(await name.evaluate(node => node.scrollWidth <= node.clientWidth)).toBe(true);
+    for (const text of await page.locator('.tile-slots .element > *').all()) {
+      expect(await text.evaluate(node => node.scrollWidth <= node.clientWidth)).toBe(true);
+    }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await page.screenshot({ path: test.info().outputPath(`${language}-narrow-text.png`), fullPage: true });
   });

@@ -30,7 +30,9 @@ An external test URL disables the local server. Tests use isolated browser conte
 - Enlarged text checks prompted wrapping the header and collected element names, allowing current and collected tiles to grow, and letting the current element's explanation wrap within its column. The palette and raised tile styling remain.
 - Local Firefox launch failed before navigation with “Could not find profile folder,” including after changing the temporary directory. This is an environment validation gap, not a passed browser flow. Linux CI supplies an independent check.
 - Actual beginner observations: **none collected yet**. Recall improvement: **not established**.
-- Final automated/deployment results are recorded below before PR handoff.
+- Local verification on 2026-10-04 (macOS 27.0.1, Playwright 1.63.0): translation parity, 20 unit tests, type check and production build passed. Final regression: 128 passed, two desktop touch-only checks intentionally skipped, across five runnable projects. The final symbol-sizing adjustment passed all ten narrow/enlarged-text cases. German 320px WebKit screenshots were visually inspected.
+- Production https://elementris-alpha.vercel.app returned HTTP 200; all 20 desktop/portrait first-time and returning-player flows passed against it. These checks ran against the existing merged production application; PR CSS changes are in the preview.
+- [PR #12](https://github.com/mckc20/elementris/pull/12) has a successful [Vercel preview](https://elementris-git-codex-eafff2-martinacarmenkranzl-1342s-projects.vercel.app), which requires Vercel authentication. Authenticated preview HTML was verified; interactive flows ran against the local production build. Linux CI results are pending.
 
 ## Manual device and accessibility protocol
 

@@ -124,3 +124,13 @@ progress::-moz-progress-bar { background: var(--accent); }
   .game-page .tile-slots .name { grid-column: auto; text-align: left; font-size: 10px; }
   .game-page .family-column { padding: 10px 7px; }
 }
+
+.page-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.language-switch { display: flex; gap: 4px; }
+.language-switch .button { padding: 8px; font-size: 12px; border-radius: 8px; background: var(--background); box-shadow: 0 3px 0 var(--ink); }
+.language-switch .button[aria-pressed="true"] { background: var(--ink); color: var(--background); }
+.family-card h2, .column-title, h1 { overflow-wrap: anywhere; }
+@media (max-width: 380px) {
+  .brand { font-size: 21px; }
+  .brand-mark { width: 30px; height: 30px; margin-right: 7px; }
+}

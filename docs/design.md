@@ -36,3 +36,7 @@ Use bold element symbols, clear atomic numbers, and smaller element names. Inter
 - Respect reduced-motion preferences when introducing drop, press, or celebration animations.
 
 The Coming Soon visual reference is carried into the lesson by palette tokens, the dotted background, bold typography, raised tiles, and native buttons. `ElementTile`, `Button`, and `PageLayout` remain reusable foundations. The lesson board has aligned columns with fixed collection slots, a textual placement cue, visible keyboard focus, and short tile-drop feedback. Reduced motion removes drop and press movement. After placement the player chooses when to advance; keyboard focus moves to that action, then to the next element heading. The overview's neutral hydrogen cell prevents implying it belongs to the alkali metals.
+
+## Language control
+
+Issue #8 places a compact DE / EN button group beside the brand in the top-right of every screen. Each option has a minimum 44px tap target, native-language accessible name, visible keyboard focus, and `aria-pressed` state. The selected language uses a deep-green fill; the group follows the existing raised-control style. Longer German headings wrap within the portrait layout. Switching preserves lesson state and keeps keyboard focus on the selected control.

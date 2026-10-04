@@ -5,6 +5,6 @@ export interface GameState {
   status: 'ready' | 'placed' | 'complete';
   elementIndex: number;
   placed: readonly number[];
-  feedback: string;
+  feedback: 'guide' | 'incorrect' | 'correct';
 }
 export type GameAction = { type: 'place'; familyId: FamilyId } | { type: 'next' };

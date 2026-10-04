@@ -46,6 +46,10 @@ These choices are implemented for local review; they can be adjusted based on us
 
 Independent practice, optional hints, learning results, and saved progress remain planned for phases 3 and 4. The round currently resets on page refresh. Browser validation covers Chromium on desktop and small portrait viewports; a broader support baseline and the versioned progress schema remain to be resolved.
 
+## Language support (issue #8)
+
+The implementation provides German and English for all current lesson screens, feedback, metadata, and accessibility labels. Initial selection uses only the highest-priority browser preference: German regional tags use German; unsupported preferences use English. A saved manual choice overrides browser detection. The top-right DE / EN switch updates immediately without resetting the round and persists when local storage is available. German uses informal `du`. All subsequent features and lesson prose must include both languages in external JSON resources; see [translation guidance](translations.md).
+
 ## Later scope
 
 Additional families and lessons, exact table positions, timed challenges, and installable/offline PWA support follow the learning MVP. Accounts, leaderboards, and chemistry reaction mechanics are outside the current MVP scope.

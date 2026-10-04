@@ -14,3 +14,9 @@ Verified on 2026-10-04 against the Royal Society of Chemistry. The individual el
 RSC's [Main Group Chemistry](https://books.rsc.org/books/monograph/405/Main-Group-Chemistry) explicitly identifies group 1 as alkali metals and group 18 as noble gases. Its chapter titles list these six elements in their respective families. RSC's [periodic table teaching guide](https://edu.rsc.org/cpd/the-periodic-table/3010823.article) supports the descriptions of alkali metals as reactive metals and noble gases as unreactive gases. Some school resources use “group 0” for noble gases; Elementris uses the 1–18 numbering confirmed by the element fact boxes.
 
 The table overview shows the seven main rows and omits the detached lanthanide/actinide rows. Group 1 is highlighted below hydrogen; group 18 is highlighted on the right. Hydrogen is not an alkali metal and remains neutral. This overview orients players to families; the lesson's collection slots do not represent exact periods or a chemical reaction.
+
+## German terminology
+
+Verified on 2026-10-04 against the Hessian education ministry's [Chemie Periodensystem](https://kultus.hessen.de/sites/kultus.hessen.de/files/2021-10/la-chemie-periodensystem.pdf). It confirms Lithium (Li, 3), Helium (He, 2), Natrium (Na, 11), Neon (Ne, 10), Kalium (K, 19), Argon (Ar, 18), Wasserstoff, and the family names Alkalimetalle/Edelgase. That source uses Roman main-group labels; Elementris retains the RSC-verified 1–18 numbering. Translations change prose and element names, while symbols, atomic numbers, memberships, and chemistry descriptions retain their existing meaning.
+
+UI and lesson prose live in `src/locales/en/translation.json` and `src/locales/de/translation.json`; lesson data stores translation keys. German uses the grammatically inflected Alkalimetallen/Edelgasen in feedback, without changing family identifiers.

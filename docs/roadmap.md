@@ -6,6 +6,7 @@ Each phase has one GitHub tracking issue. Implement phases in order; a phase may
 | --- | --- | --- |
 | 1. Foundation | [#1](https://github.com/mckc20/elementris/issues/1) | A deployable React/TypeScript/Vite app and reusable visual components |
 | 2. First lesson | [#2](https://github.com/mckc20/elementris/issues/2) | A beginner can complete a guided family-placement lesson on a phone |
+| Bilingual foundation | [#8](https://github.com/mckc20/elementris/issues/8) | German and English support before Phase 3 |
 | 3. Independent practice | [#3](https://github.com/mckc20/elementris/issues/3) | Players practise recall with optional hints, corrections, and learning results |
 | 4. Progress | [#4](https://github.com/mckc20/elementris/issues/4) | Players can return to their progress and practise elements they find difficult |
 | 5. MVP validation | [#5](https://github.com/mckc20/elementris/issues/5) | Mobile usability, accessibility, and beginner learning have been evaluated |
@@ -20,4 +21,6 @@ Merged PRs and issue comments record completion. For unfinished work, record the
 
 Phase 1 is complete and merged through PR #6 (`c54b231`); issue #1 is closed. The production application is at https://elementris-alpha.vercel.app.
 
-Phase 2 is implemented locally on `codex/phase-2-first-lesson`: verified six-element content, introduction, family placement with guided highlights and corrections, compact table orientation, completion, and replay. Pure rules and full desktop/portrait browser flows have automated coverage. Local user testing is complete, including collected symbol spacing and mobile name alignment fixes. The implementation and validation are recorded in [PR #7](https://github.com/mckc20/elementris/pull/7); issue #2 records phase completion after merge. Independent practice and progress are still planned for phases 3 and 4.
+Phase 2 is complete and merged through [PR #7](https://github.com/mckc20/elementris/pull/7); issue #2 is closed. The guided six-element lesson supports corrections, replay, and periodic-table orientation.
+
+Issue #8 is implemented on `codex/german-language` for PR review: German/English UI and lesson resources, highest-priority browser detection, remembered manual choices, semantic feedback, and an accessible top-right switch. It must merge before Phase 3. Future features must ship in both languages; see [translation guidance](translations.md). Independent practice and learning progress remain planned for phases 3 and 4.

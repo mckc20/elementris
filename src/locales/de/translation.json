@@ -1,0 +1,77 @@
+{
+  "language": {
+    "label": "Sprache",
+    "de": "Deutsch",
+    "en": "English"
+  },
+  "document": {
+    "title": "Elementris — Elementfamilien kennenlernen",
+    "description": "Lerne Elementfamilien in einer kurzen, angeleiteten Lektion zum Periodensystem kennen."
+  },
+  "footer": "Kleine Kacheln. Große Entdeckungen.",
+  "lesson": {
+    "guided": "LEKTION 01 · ANGELEITET",
+    "complete": "LEKTION 01 · ABGESCHLOSSEN",
+    "title": "Lerne zwei Elementfamilien kennen",
+    "headingStart": "Lerne zwei",
+    "headingEnd": "Elementfamilien kennen.",
+    "intro": "Sechs kleine Kacheln. Zwei Seiten des Periodensystems.",
+    "description": "Eine Elementfamilie ist eine Gruppe von Elementen mit ähnlichen Eigenschaften. Lerne zwei davon kennen.",
+    "hydrogen": "Wasserstoff steht über den Alkalimetallen, gehört aber nicht zu ihnen.",
+    "start": "Angeleitete Lektion starten",
+    "pace": "Tippe auf die hervorgehobene Familie. Ohne Zeitlimit. Lass dir Zeit.",
+    "completeStart": "Zwei Familien.",
+    "completeEnd": "Sechs Entdeckungen.",
+    "completeIntro": "Du hast alle sechs Elemente platziert.",
+    "completeDescription": "Du hast die Hinweise genutzt. Wiederhole die Lektion, um die Namen und Symbole besser kennenzulernen.",
+    "replay": "Lektion wiederholen",
+    "placed": "{{placed}} / {{total}} platziert",
+    "progress": "Lektionsfortschritt",
+    "findFamily": "Finde die Familie von {{element}}",
+    "elementIndex": "ELEMENT {{index}} VON {{total}}",
+    "atomicNumber": "Ordnungszahl {{number}}",
+    "familyGuide": "{{family}} · Gruppe {{group}}",
+    "continue": "Platziert! Mach weiter, wenn du bereit bist.",
+    "placeInstruction": "Tippe auf die hervorgehobene Familie, um die Kachel zu platzieren.",
+    "board": "Spalten der Elementfamilien",
+    "placeLabel": "Platziere {{element}} in der Familie {{family}}{{highlighted}}",
+    "highlighted": " (hervorgehoben)",
+    "placeHere": "↓ Hier platzieren",
+    "placedHere": "✓ Platziert",
+    "familyColumn": "Familienspalte",
+    "finish": "Lektion abschließen",
+    "next": "Nächstes Element",
+    "collection": "Die Spalten sammeln Familien, keine genauen Positionen im Periodensystem.",
+    "group": "GRUPPE {{group}}"
+  },
+  "feedback": {
+    "guide": "{{element}} gehört zu den {{family}}. Folge dem Hinweis oben.",
+    "incorrect": "{{element}} gehört zu den {{family}} in Gruppe {{group}}. Versuch es mit der hervorgehobenen Spalte.",
+    "correct": "{{element}} gehört zu den {{family}}. Gut platziert!"
+  },
+  "families": {
+    "alkali": {
+      "name": "Alkalimetalle",
+      "sentenceName": "Alkalimetallen",
+      "description": "Reaktive Metalle auf der linken Seite des Periodensystems."
+    },
+    "noble": {
+      "name": "Edelgase",
+      "sentenceName": "Edelgasen",
+      "description": "Sehr reaktionsträge Gase auf der rechten Seite des Periodensystems."
+    }
+  },
+  "elements": {
+    "Li": "Lithium",
+    "He": "Helium",
+    "Na": "Natrium",
+    "Ne": "Neon",
+    "K": "Kalium",
+    "Ar": "Argon"
+  },
+  "orientation": {
+    "label": "Überblick über das Periodensystem: Alkalimetalle in Gruppe 1 ganz links, ohne Wasserstoff; Edelgase in Gruppe 18 ganz rechts. Die ausgelagerten Reihen sind nicht dargestellt.",
+    "left": "Gruppe 1 · linker Rand",
+    "right": "Gruppe 18 · rechter Rand"
+  }
+}

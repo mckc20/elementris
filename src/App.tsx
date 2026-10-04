@@ -58,6 +58,8 @@ export function App() {
           <p className="small-note">{t('lesson.hydrogen')}</p>
           <Button className="start-button" onClick={begin}>{t('lesson.start')} <span aria-hidden="true">→</span></Button>
           <p className="small-note">{t('lesson.pace')}</p>
+          <Button className="start-button secondary-action" onClick={beginPractice}>{t('practice.start')} <span aria-hidden="true">→</span></Button>
+          <p className="small-note">{t('practice.intro')}</p>
         </> : game.status === 'complete' && practice ? <PracticeResults game={game} lesson={lesson} headingRef={heading} onReplay={beginPractice} onGuided={begin} /> : game.status === 'complete' ? <>
           <p className="eyebrow">{t('lesson.complete')}</p>
           <h1 ref={heading} tabIndex={-1}>{t('lesson.completeStart')}<br /><span>{t('lesson.completeEnd')}</span></h1>

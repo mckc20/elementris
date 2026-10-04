@@ -70,8 +70,18 @@ describe('whole-table catalogue', () => {
     expect(reached.size).toBe(118);
   });
 
-  it('rejects incomplete, duplicate, excessive or unknown destination selections', () => {
-    for (const selection of [[], ['group-1'], ['group-1', 'group-1'], ['group-1', 'group-2', 'group-3', 'group-4'], ['group-1', 'unknown']]) {
+  it('supports larger selections through complete 118-element coverage', () => {
+    for (let count = 4; count <= destinations.length; count++) {
+      const selection = destinations.slice(0, count).map(destination => destination.id);
+      const elements = elementsForDestinations(selection);
+      expect(elements.map(element => element.symbol).sort()).toEqual(expectedColumns.slice(0, count).flatMap(column => column.split(' ')).sort());
+      expect(new Set(elements.map(element => element.atomicNumber)).size).toBe(elements.length);
+    }
+    expect(elementsForDestinations(destinations.map(destination => destination.id))).toEqual(elementCatalogue);
+  });
+
+  it('rejects incomplete, duplicate or unknown destination selections', () => {
+    for (const selection of [[], ['group-1'], ['group-1', 'group-1'], ['group-1', 'unknown']]) {
       expect(() => elementsForDestinations(selection as DestinationId[])).toThrow(RangeError);
     }
   });

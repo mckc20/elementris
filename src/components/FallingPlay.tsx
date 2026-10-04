@@ -28,6 +28,7 @@ export function FallingPlay({ onHome }: { onHome: () => void }) {
   const stationary = reducedMotion || stationaryChoice;
   const heading = useRef<HTMLHeadingElement>(null);
   const board = useRef<HTMLDivElement>(null);
+  const lanes = useRef<HTMLDivElement>(null);
   const advance = useRef<HTMLButtonElement>(null);
   const status = game?.status;
   const turn = game?.turn;
@@ -37,6 +38,16 @@ export function FallingPlay({ onHome }: { onHome: () => void }) {
     else if (status === 'correction' || status === 'collected' || status === 'paused') advance.current?.focus();
     else { heading.current?.focus(); window.scrollTo(0, 0); }
   }, [status, turn]);
+
+  useEffect(() => {
+    const scroller = lanes.current;
+    const active = scroller?.querySelector<HTMLElement>('.active-lane');
+    if (!scroller || !active) return;
+    const left = active.offsetLeft;
+    const right = left + active.offsetWidth;
+    if (left < scroller.scrollLeft) scroller.scrollLeft = left;
+    else if (right > scroller.scrollLeft + scroller.clientWidth) scroller.scrollLeft = right - scroller.clientWidth;
+  }, [game?.lane, turn, status]);
 
   useEffect(() => {
     if (status !== 'falling' || turn === undefined) return;
@@ -74,7 +85,7 @@ export function FallingPlay({ onHome }: { onHome: () => void }) {
     if (event.target !== event.currentTarget || status !== 'falling' || event.repeat || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
       event.preventDefault(); act({ type: 'move', direction: event.key === 'ArrowLeft' ? -1 : 1 });
-    } else if (event.key === 'ArrowDown') { event.preventDefault(); act({ type: 'drop' }); }
+    } else if (event.key === 'ArrowDown' || event.key === ' ') { event.preventDefault(); act({ type: 'drop' }); }
   }
   const destinationName = (id: DestinationId) => t(`destinations.${id}`);
   const results = game && fallingResults(game);
@@ -87,12 +98,12 @@ export function FallingPlay({ onHome }: { onHome: () => void }) {
         <p className="eyebrow">{t('falling.roundLabel')}</p>
         <h1 ref={heading} tabIndex={-1}>{t('falling.selectionTitle')}</h1>
         <p className="description">{t('falling.selectionIntro')}</p>
-        <p role="status" aria-live="polite">{t('falling.selectedCount', { count: selection.length })}{selection.length === 3 && <> · {t('falling.selectionFull')}</>}</p>
+        <p role="status" aria-live="polite">{t('falling.selectedCount', { count: selection.length })}</p>
         <fieldset className="destination-selector">
           <legend>{t('falling.selectionLabel')}</legend>
           <div className="destination-options">{destinations.map(destination => <label key={destination.id} className={`destination-option ${selection.includes(destination.id) ? 'is-selected' : ''}`}>
-            <input type="checkbox" checked={selection.includes(destination.id)} disabled={selection.length === 3 && !selection.includes(destination.id)}
-              onChange={() => setSelection(current => current.includes(destination.id) ? current.filter(id => id !== destination.id) : current.length < 3 ? [...current, destination.id] : current)} />
+            <input type="checkbox" checked={selection.includes(destination.id)}
+              onChange={() => setSelection(current => current.includes(destination.id) ? current.filter(id => id !== destination.id) : [...current, destination.id])} />
             <span><strong>{t(destination.nameKey)}</strong><small>{t('falling.destinationCount', { count: elementCatalogue.filter(element => element.destinationId === destination.id).length })}</small></span>
           </label>)}</div>
         </fieldset>
@@ -125,15 +136,19 @@ export function FallingPlay({ onHome }: { onHome: () => void }) {
         <h1 className="round-title" ref={heading} tabIndex={-1}>{t('falling.roundTitle', { element: t(element!.nameKey) })}</h1>
         <p className="round-identity">{t('falling.identity', { symbol: element!.symbol, number: element!.atomicNumber })}</p>
         <p className="board-instruction" id="falling-instructions">{t('falling.instructions')}</p>
+        {game.selection.length > 3 && <p className="small-note">{t('falling.scrollLanes')}</p>}
         <div className={`falling-board ${stationary ? 'stationary-board' : ''}`} ref={board} tabIndex={0} role="group" aria-label={t('falling.board')} aria-describedby="falling-instructions" onKeyDown={keyboard}
           style={{ '--lane-count': game.selection.length } as CSSProperties} data-status={status} data-atomic-number={element!.atomicNumber} data-turn={game.turn}>
-          <div className="falling-tracks" aria-hidden="true">{game.selection.map((id, index) => <div key={id} className={`falling-track lane-${index} ${index === game.lane ? 'active-lane' : ''}`}>
+          <div className={`falling-lanes ${game.selection.length > 3 ? 'many-lanes' : ''}`} ref={lanes}>
+          <div className="falling-lanes-content">
+          <div className="falling-tracks" aria-hidden="true">{game.selection.map((id, index) => <div key={id} className={`falling-track lane-${index % 3} ${index === game.lane ? 'active-lane' : ''}`}>
             {index === game.lane && <div className="falling-tile" style={{ transform: stationary ? 'none' : `translateY(${game.elapsedMs / fallDurationMs * 56}px)` }}><ElementTile element={element!} tone="peach" /></div>}
             <span className="lane-floor">{destinationName(id)}</span>
           </div>)}</div>
-          <div className="lane-controls">{game.selection.map((id, index) => <Button key={id} className={`lane-control lane-${index}`} aria-label={t('falling.selectLane', { destination: destinationName(id) })} aria-pressed={game.lane === index} aria-disabled={status !== 'falling'} onClick={() => act({ type: 'select', lane: index })}>
+          <div className="lane-controls">{game.selection.map((id, index) => <Button key={id} className={`lane-control lane-${index % 3}`} aria-label={t('falling.selectLane', { destination: destinationName(id) })} aria-pressed={game.lane === index} aria-disabled={status !== 'falling'} onClick={() => { act({ type: 'select', lane: index }); if (status === 'falling') board.current?.focus({ preventScroll: true }); }}>
             <strong>{destinationName(id)}</strong><span>{t(index === game.lane ? 'falling.selected' : 'falling.chooseLane')}</span>
           </Button>)}</div>
+          </div></div>
         </div>
         {status === 'falling' && <div className="falling-actions"><Button onClick={() => act({ type: 'drop' })}>{t('falling.drop')}</Button><Button className="pause-button" onClick={() => act({ type: 'pause', reason: 'manual' })}>{t('falling.pause')}</Button></div>}
         {status === 'falling' || status === 'paused' ? <p className="falling-countdown" role="timer" aria-live="off">{t('falling.countdown', { seconds: Math.max(0, Math.ceil((fallDurationMs - game.elapsedMs) / 1000)) })}</p> : <p className="falling-countdown">{t('falling.landed')}</p>}

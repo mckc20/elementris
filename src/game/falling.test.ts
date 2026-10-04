@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getElement, elementsForDestinations, type DestinationId } from '../content/catalogue';
+import { destinations, getElement, elementsForDestinations, type DestinationId } from '../content/catalogue';
 import { fallDurationMs, fallingResults, startFalling, updateFalling, type FallingState, type FallingAction } from './falling';
 
 const selection: DestinationId[] = ['group-3', 'group-4'];
@@ -9,6 +9,24 @@ const correctLane = (state: FallingState) => state.selection.indexOf(getElement(
 const choose = (state: FallingState, lane = correctLane(state)) => updateFalling(state, { type: 'select', lane, turn: state.turn, now: state.lastTick });
 
 describe('falling rules with deterministic clock', () => {
+  it('completes all 118 elements across all 20 destinations without omissions or duplicates', () => {
+    let game = startFalling(destinations.map(destination => destination.id), 0, () => 0.5);
+    const seen = new Set<number>();
+    const lanes = new Set<number>();
+    for (let index = 0; index < 118; index++) {
+      const number = game.order[game.index];
+      expect(seen.has(number)).toBe(false);
+      seen.add(number);
+      lanes.add(correctLane(game));
+      game = action(choose(game), { type: 'drop', now: game.lastTick });
+      expect(game.status).toBe('collected');
+      game = action(game, { type: 'next', now: game.lastTick });
+    }
+    expect(lanes.size).toBe(20);
+    expect(game.status).toBe('complete');
+    expect(fallingResults(game)).toMatchObject({ score: 118, collected: 118, total: 118, corrected: [], retries: 0 });
+  });
+
   it('covers exactly the selected elements and creates a new shuffle on replay', () => {
     const game = start();
     expect([...game.order].sort((a, b) => a - b)).toEqual(elementsForDestinations(selection).map(e => e.atomicNumber));

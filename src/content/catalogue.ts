@@ -167,9 +167,9 @@ export function getElement(atomicNumber: number): CatalogueElement {
 
 /** Catalogue-order coverage for a future complete-selection round; shuffling is a game rule. */
 export function elementsForDestinations(selection: readonly DestinationId[]): readonly CatalogueElement[] {
-  if (selection.length < 2 || selection.length > 3 || new Set(selection).size !== selection.length
+  if (selection.length < 2 || new Set(selection).size !== selection.length
     || selection.some(id => !destinations.some(destination => destination.id === id))) {
-    throw new RangeError('Choose two or three distinct valid destinations');
+    throw new RangeError('Choose at least two distinct valid destinations');
   }
   return elementCatalogue.filter(element => selection.includes(element.destinationId));
 }

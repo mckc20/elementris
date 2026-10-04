@@ -264,9 +264,9 @@
     "homeDescription": "Steer an element into its group or series. Choose from all 118 elements — no lesson required.",
     "learn": "Learn & practise",
     "selectionTitle": "Choose your destinations.",
-    "selectionIntro": "Choose two or three groups or series. Every element in your selection appears once, in a shuffled order.",
+    "selectionIntro": "Choose at least two groups or series. You can select all 20 destinations to play with all 118 elements.",
     "selectionLabel": "Destinations",
-    "selectedCount": "{{count}} / 3 destinations selected",
+    "selectedCount": "{{count}} destinations selected",
     "destinationCount": "{{count}} elements",
     "summaryTitle": "Your round",
     "summary": "{{count}} elements · 12 seconds per tile",
@@ -279,8 +279,8 @@
     "identity": "{{symbol}} · Atomic number {{number}}",
     "progress": "Round coverage",
     "placed": "{{placed}} / {{total}} collected",
-    "instructions": "Tap a lane, then Drop. Board keys: ← / → move, ↓ drop. The tile lands automatically after 12 seconds.",
-    "board": "Falling board. Left and right arrows select a lane; down arrow drops.",
+    "instructions": "Choose a lane, then Drop or press Space. Board keys: ← / → move, Space / ↓ drop. Automatic landing after 12 seconds.",
+    "board": "Falling board. Left and right arrows select a lane; Space or down arrow drops.",
     "selected": "✓ Selected",
     "chooseLane": "Select lane",
     "selectLane": "Select {{destination}} lane",
@@ -312,7 +312,7 @@
     "noCorrections": "Every element landed correctly on the first try.",
     "replay": "Replay this selection",
     "resultsLabel": "ROUND COMPLETE",
-    "selectionFull": "Three destinations selected. Deselect one to choose another.",
-    "landed": "Landed"
+    "landed": "Landed",
+    "scrollLanes": "Swipe or scroll sideways to see more lanes. Arrow keys keep the selected lane in view."
   }
 }

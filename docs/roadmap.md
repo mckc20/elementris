@@ -10,7 +10,7 @@ Each phase has one GitHub tracking issue. Implement phases in order; a phase may
 | 3. Independent practice | [#3](https://github.com/mckc20/elementris/issues/3) | Players practise recall with optional hints, corrections, and learning results |
 | 4. Progress | [#4](https://github.com/mckc20/elementris/issues/4) | Players can return to their progress and practise elements they find difficult |
 | 5. MVP validation | [#5](https://github.com/mckc20/elementris/issues/5) | Mobile usability, accessibility, and beginner learning have been evaluated |
-| 6. Falling game | [#13](https://github.com/mckc20/elementris/issues/13) | Falling single-element play with all 118 elements and two or three selected destinations |
+| 6. Falling game | [#13](https://github.com/mckc20/elementris/issues/13) | Falling single-element play with all 118 elements and two to twenty selected destinations |
 | 7. Whole-table lessons | [#14](https://github.com/mckc20/elementris/issues/14) | Expand guided learning and untimed practice |
 | 8. Evidence and review | [#15](https://github.com/mckc20/elementris/issues/15) | Shared evidence, coverage, short rounds, and review |
 | 9. Challenges | [#16](https://github.com/mckc20/elementris/issues/16) | Challenge modes and gameplay polish |

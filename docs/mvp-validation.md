@@ -83,3 +83,11 @@ Issue [#13](https://github.com/mckc20/elementris/issues/13) builds on the merged
 - Local Firefox still fails before navigation with the previously documented profile-folder error, including outside the shell sandbox and with `/private/tmp` profiles. Linux CI will check all six browser projects; local Firefox is not counted as passing.
 - Screenshot review prompted shorter instructions, a shorter track, and Drop/Pause immediately below lane selection for small-phone use. German three-lane and English results layouts were visually reviewed. Hosted playable preview validation is recorded on the implementation PR after deployment.
 - No beginner study, physical-device screen-reader session, or recall improvement is claimed. The existing Phase 5 manual protocols remain applicable; round completion establishes software coverage, not learning mastery.
+
+### Expanded selection and Space shortcut (2026-10-04)
+
+At the owner's request, Phase 6 now permits two to twenty destinations. Space and down arrow both drop from the focused board; clicking a lane returns focus there. Native controls elsewhere retain Space behavior. Boards above three lanes scroll horizontally, and keyboard movement keeps the selected lane visible.
+
+- Translation parity, TypeScript/build, diff check, 33 unit tests and the translation-check script test passed. Larger catalogue selections and a complete all-118-element/all-20-destination round are covered.
+- Updated falling browser flows: 48 passed, two expected non-touch skips, across desktop/portrait Chromium, WebKit, Android and iPhone emulation. Both languages cover all-20 selection, 118-element round capacity, last-lane keyboard visibility, Space after clicking a lane, held-key rejection, native Space scope, axe audits, and no page overflow at 320px. Existing falling/correction/pause/results flows remain passing.
+- German 320px all-20 board screenshot reviewed. Hosted preview and Linux CI results are recorded on PR #18 after deployment. The prior full-suite evidence above describes the earlier head.

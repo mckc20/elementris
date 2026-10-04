@@ -177,6 +177,8 @@ progress::-moz-progress-bar { background: var(--accent); }
 .round-identity { font-weight: 650; font-size: 14px; margin: 0; }
 .falling-board { border: 1.5px solid var(--ink); border-radius: 12px; padding: 8px; background: var(--background); }
 .falling-board:focus { outline: 3px solid var(--accent); outline-offset: 5px; }
+.falling-lanes { position: relative; overflow-x: auto; padding: 3px; }
+.many-lanes .falling-lanes-content { min-width: calc(var(--lane-count) * 112px); }
 .falling-tracks, .lane-controls { display: grid; grid-template-columns: repeat(var(--lane-count), minmax(0, 1fr)); gap: 8px; }
 .falling-track { height: 200px; border-radius: 8px; background: #e1e5de; position: relative; border: 1px dashed #20332d60; padding: 8px 4px; }
 .falling-track.active-lane { border: 2px solid var(--ink); }

@@ -1,6 +1,6 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
-import { getElement } from '../src/content/catalogue';
+import { destinations, getElement } from '../src/content/catalogue';
 import en from '../src/locales/en/translation.json' with { type: 'json' };
 import de from '../src/locales/de/translation.json' with { type: 'json' };
 
@@ -109,7 +109,7 @@ for (const language of ['en', 'de'] as const) {
     await page.goto('/');
     await page.getByRole('button', { name: c.falling.play, exact: true }).click();
     for (const id of ['group-3', 'lanthanoids', 'actinoids'] as const) await page.getByRole('checkbox', { name: new RegExp(`^${c.destinations[id]} `) }).check();
-    await expect(page.getByRole('checkbox', { name: new RegExp(`^${c.destinations['group-4']} `) })).toBeDisabled();
+    await expect(page.getByRole('checkbox', { name: new RegExp(`^${c.destinations['group-4']} `) })).toBeEnabled();
     await expect(page.locator('.round-summary')).toContainText(language === 'en' ? '32 elements' : '32 Elemente');
     await page.getByRole('button', { name: language === 'en' ? 'Deutsch' : 'English', exact: true }).click();
     await expect(page.getByRole('checkbox', { checked: true })).toHaveCount(3);
@@ -190,6 +190,7 @@ test('keyboard controls, hidden-page pause, manual countdown and shortcut scope'
   // Shortcuts never act on the language switch or native lane buttons.
   await page.getByRole('button', { name: 'English', exact: true }).focus();
   await page.keyboard.press('ArrowDown');
+  await page.keyboard.press('Space');
   await expect(board).toHaveAttribute('data-status', 'falling');
   await page.getByRole('checkbox', { name: 'Use a stationary countdown' }).check();
   await expect(page.locator('.falling-tile')).toHaveCSS('transform', 'none');
@@ -201,7 +202,9 @@ test('keyboard controls, hidden-page pause, manual countdown and shortcut scope'
   const number = Number(await board.getAttribute('data-atomic-number'));
   const lane = getElement(number).destinationId === 'group-3' ? 0 : 1;
   if (lane === 1) await page.keyboard.press('ArrowRight');
-  await page.keyboard.press('ArrowDown');
+  await board.dispatchEvent('keydown', { key: ' ', repeat: true });
+  await expect(board).toHaveAttribute('data-status', 'falling');
+  await page.keyboard.press('Space');
   await expect(board).toHaveAttribute('data-status', 'collected');
   await expect(page.getByRole('button', { name: 'Continue', exact: true })).toBeFocused();
   await page.keyboard.press('Enter');
@@ -252,5 +255,40 @@ for (const language of ['en', 'de'] as const) {
     await expect(page.getByTestId('falling-score')).toHaveText('10 / 10');
     await expect(page.getByRole('heading', { name: c.falling.resultsTitle })).toBeFocused();
     expect(seen.size).toBe(10);
+  });
+}
+
+for (const language of ['en', 'de'] as const) {
+  test(`${language}: all destinations fit portrait and Space drops after lane selection`, async ({ page }) => {
+    const c = copy[language];
+    await freezeClock(page);
+    await page.setViewportSize({ width: 320, height: 568 });
+    await page.addInitScript(language => localStorage.setItem('elementris.language', language), language);
+    await page.goto('/#play');
+    for (const checkbox of await page.getByRole('checkbox').all()) await checkbox.check();
+    await expect(page.getByRole('checkbox', { checked: true })).toHaveCount(20);
+    await page.getByRole('button', { name: c.falling.start, exact: true }).click();
+    const board = page.locator('.falling-board');
+    await expect(page.getByRole('progressbar')).toHaveAttribute('max', '118');
+    await expect(page.locator('.lane-control')).toHaveCount(20);
+    for (let step = 0; step < 19; step++) await page.keyboard.press('ArrowRight');
+    const last = page.locator('.lane-control').last();
+    await expect(last).toHaveAttribute('aria-pressed', 'true');
+    const lastBounds = (await last.boundingBox())!;
+    expect(lastBounds.width).toBeGreaterThanOrEqual(100);
+    expect(lastBounds.x).toBeGreaterThanOrEqual(0);
+    expect(lastBounds.x + lastBounds.width).toBeLessThanOrEqual(320);
+    await screenCheck(page);
+    await page.screenshot({ path: test.info().outputPath(`${language}-twenty-lanes.png`), fullPage: true });
+    const number = Number(await board.getAttribute('data-atomic-number'));
+    const lane = destinations.findIndex(destination => destination.id === getElement(number).destinationId);
+    await page.locator('.lane-control').nth(lane).click();
+    await expect(board).toBeFocused();
+    await page.keyboard.press('Space');
+    await expect(board).toHaveAttribute('data-status', 'collected');
+    await expect(page.locator('.falling-collection li')).toHaveCount(1);
+    await page.keyboard.press('Enter');
+    await expect(board).toHaveAttribute('data-status', 'falling');
+    await expect(page.getByRole('progressbar')).toHaveAttribute('value', '1');
   });
 }

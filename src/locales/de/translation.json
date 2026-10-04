@@ -23,7 +23,7 @@
     "completeStart": "Zwei Familien.",
     "completeEnd": "Sechs Entdeckungen.",
     "completeIntro": "Du hast alle sechs Elemente platziert.",
-    "completeDescription": "Du hast die Hinweise genutzt. Wiederhole die Lektion, um die Namen und Symbole besser kennenzulernen.",
+    "completeDescription": "Du bist den Hinweisen gefolgt. Teste dein Wissen in der Übung oder wiederhole die Lektion.",
     "replay": "Lektion wiederholen",
     "placed": "{{placed}} / {{total}} platziert",
     "progress": "Lektionsfortschritt",
@@ -47,7 +47,10 @@
   "feedback": {
     "guide": "{{element}} gehört zu den {{family}}. Folge dem Hinweis oben.",
     "incorrect": "{{element}} gehört zu den {{family}} in Gruppe {{group}}. Versuch es mit der hervorgehobenen Spalte.",
-    "correct": "{{element}} gehört zu den {{family}}. Gut platziert!"
+    "correct": "{{element}} gehört zu den {{family}}. Gut platziert!",
+    "recall": "Zu welcher Familie gehört dieses Element? Wähle aus dem Gedächtnis oder hol dir Hilfe.",
+    "clue": "Familienhinweis: {{element}} gehört zu den {{family}}. Wähle die Spalte dieser Familie.",
+    "destination": "{{element}} gehört zu den {{family}}. Das Ziel ist jetzt hervorgehoben."
   },
   "families": {
     "alkali": {
@@ -73,5 +76,30 @@
     "label": "Überblick über das Periodensystem: Alkalimetalle in Gruppe 1 ganz links, ohne Wasserstoff; Edelgase in Gruppe 18 ganz rechts. Die ausgelagerten Reihen sind nicht dargestellt.",
     "left": "Gruppe 1 · linker Rand",
     "right": "Gruppe 18 · rechter Rand"
+  },
+  "practice": {
+    "start": "Übung starten",
+    "intro": "Dieselben sechs Elemente, in einer anderen Reihenfolge. Wähle ihre Familien aus dem Gedächtnis – mit optionalen Hinweisen und ohne Zeitlimit.",
+    "label": "LEKTION 01 · ÜBUNG",
+    "progress": "Übungsfortschritt",
+    "instruction": "Wähle eine Familie. Hol dir einen Hinweis, wenn du Hilfe brauchst.",
+    "hint": "Hinweis zur Familie",
+    "moreHelp": "Ziel hervorheben",
+    "hintShown": "Ziel hervorgehoben",
+    "incorrect": "{{element}} gehört zu den {{family}} in Gruppe {{group}}. Versuche es noch einmal mit dieser Familie. Du kannst weiterüben.",
+    "finish": "Ergebnisse ansehen",
+    "complete": "LEKTION 01 · ÜBUNG ABGESCHLOSSEN",
+    "resultsTitle": "Deine Ergebnisse.",
+    "resultsIntro": "Alle sechs platziert. Das kannst du als Nächstes üben.",
+    "firstCorrect": "Bei der ersten Antwort richtig",
+    "unaided": "Ohne Hilfe richtig",
+    "assisted": "Mit Hilfe oder Korrektur platziert",
+    "hintsUsed": "Genutzte Hinweisstufen",
+    "retries": "Weitere Antwortversuche",
+    "calculation": "Die erste Antwort zählt auch nach Hinweisen als richtig. Ohne Hilfe bedeutet: erste Antwort richtig, kein Hinweis. Hilfe umfasst Hinweise oder Korrekturen; weitere Antwortversuche zählen jede Antwort nach der ersten.",
+    "reviewTitle": "Noch einmal üben",
+    "noReview": "Du hast jedes Element bei der ersten Antwort ohne Hinweise richtig platziert. Wiederhole die Übung, um dein Wissen zu festigen.",
+    "reviewDetails": "Hinweisstufen: {{hints}} · Weitere Antwortversuche: {{retries}}",
+    "replay": "Übung wiederholen"
   }
 }

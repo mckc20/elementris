@@ -23,7 +23,7 @@
     "completeStart": "Two families.",
     "completeEnd": "Six discoveries.",
     "completeIntro": "You placed all six elements.",
-    "completeDescription": "You followed the guides. Replay to get familiar with the names and symbols.",
+    "completeDescription": "You followed the guides. Try practice to recall the families yourself, or replay the lesson.",
     "replay": "Replay lesson",
     "placed": "{{placed}} / {{total}} placed",
     "progress": "Lesson progress",
@@ -47,7 +47,10 @@
   "feedback": {
     "guide": "{{element}} is in the {{family}} family. Follow the guide above.",
     "incorrect": "{{element}} belongs to the {{family}} in group {{group}}. Try the highlighted column.",
-    "correct": "{{element}} belongs to the {{family}}. Nicely placed!"
+    "correct": "{{element}} belongs to the {{family}}. Nicely placed!",
+    "recall": "Which family does this element belong to? Choose from memory or ask for help.",
+    "clue": "Family clue: {{element}} belongs to the {{family}}. Choose that family’s column.",
+    "destination": "{{element}} belongs to the {{family}}. The destination is now highlighted."
   },
   "families": {
     "alkali": {
@@ -73,5 +76,30 @@
     "label": "Periodic table overview: alkali metals in group 1 on the far left, excluding hydrogen; noble gases in group 18 on the far right. The detached rows are omitted.",
     "left": "Group 1 · left edge",
     "right": "Group 18 · right edge"
+  },
+  "practice": {
+    "start": "Start practice",
+    "intro": "The same six elements, in a different order. Choose their families from memory, with optional hints and no timer.",
+    "label": "LESSON 01 · PRACTICE",
+    "progress": "Practice progress",
+    "instruction": "Choose a family. Ask for a hint whenever you need one.",
+    "hint": "Get a family clue",
+    "moreHelp": "Highlight the destination",
+    "hintShown": "Destination highlighted",
+    "incorrect": "{{element}} belongs to the {{family}} in group {{group}}. Try that family again. You can keep practising.",
+    "finish": "See results",
+    "complete": "LESSON 01 · PRACTICE COMPLETE",
+    "resultsTitle": "Your practice results.",
+    "resultsIntro": "All six placed. Here’s what to practise next.",
+    "firstCorrect": "Correct on first answer",
+    "unaided": "Correct without help",
+    "assisted": "Placements with help or correction",
+    "hintsUsed": "Hint stages used",
+    "retries": "Retry answers",
+    "calculation": "First-answer correctness includes answers after hints. Correct without help means a correct first answer with no hint. Help includes a hint or a correction; retries count every answer after the first.",
+    "reviewTitle": "Worth practising again",
+    "noReview": "You placed every element correctly on your first answer without hints. Replay to strengthen your recall.",
+    "reviewDetails": "Hint stages: {{hints}} · Retry answers: {{retries}}",
+    "replay": "Replay practice"
   }
 }

@@ -40,3 +40,7 @@ The Coming Soon visual reference is carried into the lesson by palette tokens, t
 ## Language control
 
 Issue #8 places a compact DE / EN button group beside the brand in the top-right of every screen. Each option has a minimum 44px tap target, native-language accessible name, visible keyboard focus, and `aria-pressed` state. The selected language uses a deep-green fill; the group follows the existing raised-control style. Longer German headings wrap within the portrait layout. Switching preserves lesson state and keeps keyboard focus on the selected control.
+
+## Practice and results
+
+Phase 3 keeps the same peach current tile and labelled lime/mint columns. Practice hides the family guide and destination outline until hints are requested: the first hint explains membership in the live feedback region; the second adds the existing outline and placement cue. A peach hint button stays focused as its label changes between stages. Corrections keep the placement target focused, and successful placements move focus to Next as in guided learning. Results use a mint definition list for totals and a peach review panel with element names, symbols, hint stages, and retries. The results heading receives focus; replay resets the round.

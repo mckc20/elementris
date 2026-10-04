@@ -22,4 +22,4 @@ The browser stack is a recommendation pending agreement; application scaffolding
 
 ## Hosting
 
-Vercel, connected to the public GitHub repository. The intended production branch is `main`.
+Vercel is the planned host, with a Git integration for the public GitHub repository. The intended production branch is `main`. The Vercel connection is pending successful CLI authentication.

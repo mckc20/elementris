@@ -74,6 +74,12 @@ The implementation provides German and English for all current lesson screens, f
 - Reset uses an inline confirmation with Cancel and Clear progress. It removes only learning progress and preserves the saved language. No account or backend is used. The interface explains that data is stored in this browser on this device and does not sync across devices; clearing browser data also removes it.
 - Validation covers partial persistence, guided and full-practice completion, hinted/corrected selection, unaided resolution, subset completion, reset/cancel, invalid data, and unavailable storage. Browser flows cover German/English on desktop and portrait Chromium.
 
+## Phase 6 catalogue foundation
+
+The agreed next release is a falling single-element game with all 118 elements, accessible through Play without lesson completion (issue #13). Its selector will require two or three distinct group/series destinations and offer complete-selection rounds. The implemented shared catalogue includes all names in German and English, periods, and one destination per element. The full La–Lu and Ac–Lr series take precedence over numbered groups; the group-3 game destination contains Sc and Y. See [scientific sources and the convention](lesson-data.md#whole-table-catalogue-phase-6).
+
+This first focused change provides catalogue selection coverage and reuses element identities in the existing lesson. The falling state machine, Play entry, selection UI, results, and timed accessibility controls remain to be implemented. The defaults in issue #13 for speed, pause, corrections, scoring, and reduced motion are still proposed until the engine/interface PR records final choices. Falling results must remain separate from untimed recall evidence.
+
 ## Later scope
 
 Additional families and lessons, exact table positions, timed challenges, and installable/offline PWA support follow the learning MVP. Accounts, leaderboards, and chemistry reaction mechanics are outside the current MVP scope.

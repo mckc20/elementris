@@ -42,6 +42,8 @@ Phase 4 adds a lesson selection card with guided progress, full-practice complet
 
 ## Local development and checks
 
+Phase 6 begins with a shared 118-element catalogue in `src/content/catalogue.ts`, external German/English names and destination labels, and complete coverage for selections of two or three groups/series. The first lesson reuses its element identities. The falling game and its screens are pending in [issue #13](https://github.com/mckc20/elementris/issues/13); see [classification conventions and scientific sources](docs/lesson-data.md#whole-table-catalogue-phase-6).
+
 Use Node.js 22.12 or later and npm. From a fresh checkout:
 
 ```sh

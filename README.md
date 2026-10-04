@@ -22,4 +22,6 @@ The browser stack is a recommendation pending agreement; application scaffolding
 
 ## Hosting
 
-Vercel is the planned host, with a Git integration for the public GitHub repository. The intended production branch is `main`. The Vercel connection is pending successful CLI authentication.
+The [Vercel project](https://vercel.com/martinacarmenkranzl-1342s-projects/elementris) is connected to [mckc20/elementris](https://github.com/mckc20/elementris), with `main` as the production branch.
+
+This folder is linked locally through `.vercel/project.json`, which is ignored by Git. Application deployment will follow once the app is scaffolded.

@@ -131,6 +131,13 @@ progress::-moz-progress-bar { background: var(--accent); }
 .review-card li span { display: block; font-size: 12px; margin-top: 4px; }
 .review-card p { font-size: 14px; line-height: 1.5; }
 .secondary-action { margin-top: 18px; background: var(--background); }
+.progress-card { margin: 24px 0; padding: 18px; text-align: left; background: var(--mint); border: 1.5px solid var(--ink); border-radius: 12px; box-shadow: 0 5px 0 var(--ink); }
+.progress-card h2 { margin: 0 0 16px; font-size: 22px; }
+.progress-card h3 { font-size: 17px; margin: 0 0 12px; }
+.progress-card p { font-size: 13px; line-height: 1.5; }
+.progress-card .small-note { font-size: 12px; }
+.reset-progress { margin-top: 24px; }
+.reset-progress p { font-size: 14px; line-height: 1.5; }
 .game-page .orientation { margin-top: 14px; }
 @media (max-width: 380px) {
   .game-page .round-title { font-size: 23px; }

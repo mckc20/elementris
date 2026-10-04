@@ -90,7 +90,7 @@
     "finish": "Ergebnisse ansehen",
     "complete": "LEKTION 01 · ÜBUNG ABGESCHLOSSEN",
     "resultsTitle": "Deine Ergebnisse.",
-    "resultsIntro": "Alle sechs platziert. Das kannst du als Nächstes üben.",
+    "resultsIntro": "Alle {{total}} platziert. Das kannst du als Nächstes üben.",
     "firstCorrect": "Bei der ersten Antwort richtig",
     "unaided": "Ohne Hilfe richtig",
     "assisted": "Mit Hilfe oder Korrektur platziert",
@@ -105,5 +105,23 @@
   "navigation": {
     "brandHome": "Elementris Startseite",
     "home": "Zur Startseite"
+  },
+  "progress": {
+    "selection": "Deine Lektionen",
+    "guided": "Angeleitet: {{placed}} / {{total}} Elemente kennengelernt",
+    "complete": "Abgeschlossen",
+    "incomplete": "Noch nicht abgeschlossen",
+    "practice": "Vollständige Übung",
+    "recalled": "Letzte Übungsantworten ohne Hilfe: {{count}} / {{total}}",
+    "reviewCount": "Elemente zum Wiederholen: {{count}}",
+    "review": "Elemente gezielt üben",
+    "reviewLabel": "GEZIELTE ÜBUNG",
+    "device": "Dein Fortschritt wird in diesem Browser auf diesem Gerät gespeichert. Er wird nicht zwischen Geräten synchronisiert. Nach dem Neuladen kommst du hierher zurück; offene Runden starten neu.",
+    "unavailable": "Dein Fortschritt konnte nicht gespeichert werden. Du kannst weiterspielen, aber Änderungen können nach dem Neuladen verloren gehen.",
+    "reset": "Lernfortschritt zurücksetzen",
+    "resetQuestion": "Den gesamten Lernfortschritt in diesem Browser löschen? Deine Sprachauswahl bleibt gespeichert.",
+    "confirmReset": "Fortschritt löschen",
+    "cancel": "Abbrechen",
+    "reviewRule": "Du wiederholst Elemente, bei deren letzter abgeschlossener Übungsplatzierung du einen Hinweis oder eine Korrektur gebraucht hast. Eine richtige erste Antwort ohne Hinweise entfernt sie aus der Wiederholung."
   }
 }

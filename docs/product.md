@@ -44,7 +44,7 @@ These choices are implemented for local review; they can be adjusted based on us
 - The miniature periodic table locates groups 1 and 18, with hydrogen excluded from the alkali highlight. Collection slots represent family membership, not exact table positions or chemical reactions.
 - Lesson data and scientific references are recorded in [lesson-data.md](lesson-data.md).
 
-Independent practice, optional hints, and learning results are implemented in Phase 3. Saved progress remains planned for Phase 4. The round currently resets on page refresh. Browser validation covers Chromium on desktop and small portrait viewports; a broader support baseline and the versioned progress schema remain to be resolved.
+Independent practice, optional hints, and learning results are implemented in Phase 3. Saved progress is implemented in Phase 4. Active rounds reset on page refresh. Browser validation covers Chromium on desktop and small portrait viewports; a broader support baseline remains to be resolved; Phase 4 defines the progress schema.
 
 ## Language support (issue #8)
 
@@ -61,7 +61,18 @@ The implementation provides German and English for all current lesson screens, f
 - **Hint stages used** counts each stage requested once, up to twelve per round. **Retry answers** counts every answer after the first for each element (attempts minus one), including the eventual correct answer. Multiple wrong answers can produce multiple retries.
 - Results list every element with a hint or correction, with its hint stages and retries. Perfect unaided rounds show encouragement to replay. Players can replay practice or return to guided learning. Switching language preserves all records and results.
 - The brand symbol and wordmark return to the introduction from every screen. A centered Back to home button is available below the content on lesson, practice, guided completion, and results screens. Returning home clears the current round, preserves language selection, focuses the introduction heading, and scrolls to the top. Starting again creates fresh records.
-- Practice and results remain in memory; refresh resets the lesson. Persistence and targeted review rounds belong to Phase 4. Chromium validation covers desktop and small portrait screens in both languages, keyboard focus, reduced motion, hint stages, correction, results, and replay.
+- Practice rounds and result screens remain in memory; refresh returns to lesson selection. Phase 4 saves learning progress and provides targeted review rounds. Chromium validation covers desktop and small portrait screens in both languages, keyboard focus, reduced motion, hint stages, correction, results, and replay.
+
+## Phase 4 implementation choices
+
+- The introduction now doubles as lesson selection. A mint lesson card offers guided learning, full practice, and targeted review alongside saved progress. Only the implemented first lesson is shown. Progress is keyed by stable lesson IDs, ready for additional lessons.
+- Successful placements save immediately, including placements from unfinished rounds. Guided progress counts distinct visited elements across rounds; guided completion requires explicitly finishing a full round. Full-practice completion likewise requires finishing a full six-element practice round. Completion stays earned through replay. Guided exposure is not presented as independent recall.
+- Each element's latest completed practice placement stores whether its first answer was correct without any hints. A hint or correction marks it for review. A later correct first answer without hints clears that mark. Guided placements never clear practice review. Unseen elements are neither counted as recalled nor added to review; unfinished attempts do not replace earlier evidence.
+- Targeted practice shuffles every currently marked element exactly once, with the same optional hints, corrections, and untimed controls as full practice. Its subset stays fixed during the round, while saved evidence updates after each placement. Results use the subset size. Review again uses the updated review list; Replay practice always starts all six elements. Completing a subset does not earn full-practice completion.
+- `elementris.progress` stores schema version 1: a lesson-ID map containing distinct guided atomic numbers, guided/full-practice completion flags, and latest per-element unaided booleans. Only this summary is persisted; round order, attempts, hint counts, active screens, and historical result totals are not restored. Reload returns to selection and starting a round creates fresh state.
+- Absent, malformed, unknown-version, or inconsistent data starts with empty progress. Unknown lesson/element identifiers are rejected. Storage reads, writes, and removal are guarded; failures never prevent play. The selection card reports saving failures and progress continues in memory. If removal fails, previously saved data may return on reload.
+- Reset uses an inline confirmation with Cancel and Clear progress. It removes only learning progress and preserves the saved language. No account or backend is used. The interface explains that data is stored in this browser on this device and does not sync across devices; clearing browser data also removes it.
+- Validation covers partial persistence, guided and full-practice completion, hinted/corrected selection, unaided resolution, subset completion, reset/cancel, invalid data, and unavailable storage. Browser flows cover German/English on desktop and portrait Chromium.
 
 ## Later scope
 

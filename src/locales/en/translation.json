@@ -90,7 +90,7 @@
     "finish": "See results",
     "complete": "LESSON 01 · PRACTICE COMPLETE",
     "resultsTitle": "Your practice results.",
-    "resultsIntro": "All six placed. Here’s what to practise next.",
+    "resultsIntro": "All {{total}} placed. Here’s what to practise next.",
     "firstCorrect": "Correct on first answer",
     "unaided": "Correct without help",
     "assisted": "Placements with help or correction",
@@ -105,5 +105,23 @@
   "navigation": {
     "brandHome": "Elementris start page",
     "home": "Back to home"
+  },
+  "progress": {
+    "selection": "Your lessons",
+    "guided": "Guided: {{placed}} / {{total}} elements visited",
+    "complete": "Completed",
+    "incomplete": "Not completed",
+    "practice": "Full practice",
+    "recalled": "Latest practice answers without help: {{count}} / {{total}}",
+    "reviewCount": "Elements to review: {{count}}",
+    "review": "Practise elements to review",
+    "reviewLabel": "TARGETED PRACTICE",
+    "device": "Progress is saved in this browser on this device. It is not synced across devices. Reloading returns here; unfinished rounds restart.",
+    "unavailable": "Progress could not be saved. You can keep playing, but changes may be lost after reload.",
+    "reset": "Reset learning progress",
+    "resetQuestion": "Clear all learning progress in this browser? Your language choice stays saved.",
+    "confirmReset": "Clear progress",
+    "cancel": "Cancel",
+    "reviewRule": "Review includes elements whose latest completed practice placement needed a hint or correction. A correct first answer without hints removes them."
   }
 }

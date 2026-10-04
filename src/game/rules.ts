@@ -1,8 +1,9 @@
 import type { Lesson } from '../content/types';
 import type { GameAction, GameState } from './types';
 
-export function startLesson(lesson: Lesson, mode: GameState['mode'] = 'guided', random = Math.random): GameState {
-  const order = lesson.elements.map((_, index) => index);
+export function startLesson(lesson: Lesson, mode: GameState['mode'] = 'guided', random = Math.random, selected?: readonly number[]): GameState {
+  const order = lesson.elements.map((_, index) => index).filter(index => !selected || selected.includes(lesson.elements[index].atomicNumber));
+  if (order.length === 0) throw new Error('A round requires at least one element');
   if (mode === 'practice') {
     // Fisher–Yates: choose a new permutation once per round, keeping every element.
     for (let index = order.length - 1; index > 0; index--) {
@@ -20,7 +21,7 @@ export function updateGame(lesson: Lesson, state: GameState, action: GameAction)
   if (state.lessonId !== lesson.id || state.status === 'complete') return state;
   if (action.type === 'next') {
     if (state.status !== 'placed') return state;
-    return state.elementIndex === lesson.elements.length - 1
+    return state.elementIndex === state.order.length - 1
       ? { ...state, status: 'complete' }
       : { ...state, status: 'ready', elementIndex: state.elementIndex + 1, feedback: state.mode === 'guided' ? 'guide' : 'recall' };
   }

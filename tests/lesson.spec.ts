@@ -50,6 +50,8 @@ test('complete keyboard flow works with reduced motion and visible focus', async
   await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
   await expect(page.getByRole('button', { name: 'English', exact: true })).toBeFocused();
   await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
+  await expect(page.getByRole('button', { name: 'Play', exact: true })).toBeFocused();
+  await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
   await expect(page.getByRole('button', { name: 'Start guided lesson' })).toBeFocused();
   await page.keyboard.press('Enter');
   // Wrong destination, then return to the highlighted one and retry.

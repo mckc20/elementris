@@ -26,6 +26,8 @@ test('German lesson completes and replays; switches preserve correction, placed 
   await expect(page.getByRole('button', { name: 'Deutsch', exact: true })).toHaveCSS('outline-width', '3px');
   await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
   await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
+  await expect(page.getByRole('button', { name: 'Spielen', exact: true })).toBeFocused();
+  await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
   await expect(page.getByRole('button', { name: 'Angeleitete Lektion starten' })).toBeFocused();
   await page.keyboard.press('Enter');
   await page.getByRole('button', { name: 'Platziere Lithium in der Familie Edelgase', exact: true }).click();

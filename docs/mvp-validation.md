@@ -72,3 +72,22 @@ Copy per actual session. All fields below are unfilled; there are no simulated p
 Do not claim MVP readiness until the browser baseline is agreed, physical-device and assistive-technology checks are recorded, actual beginner sessions establish what happens after guidance disappears, and significant findings are fixed or explicitly tracked. Owner coordination and participant availability are outstanding dependencies. Keep #5 open through review.
 
 Prioritize blockers that prevent completing a round or understanding feedback, then misleading learning claims and persistent input/layout problems. Use observations to decide whether feedback needs more prominence or the first lesson needs clearer instructions. Additional families and exact table positions follow only after this task is understandable; timed challenges and offline/PWA support remain later scope. Retention beyond the follow-up check and generalization to unseen elements are untested.
+
+## Phase 6 falling-game validation
+
+Issue [#13](https://github.com/mckc20/elementris/issues/13) builds on the merged catalogue PR #17. Implementation and checks are on `codex/phase-6-falling-game`, awaiting PR/preview review and merge.
+
+- Translation parity, 31 unit tests plus the translation-check script test, TypeScript check, production build, and diff check passed on 2026-10-04. Catalogue tests validate all 1,330 two/three-destination selections; deterministic clock tests cover natural/early landing, late lane input, pause/resume, stale/duplicate events, correction retries, scoring, explicit advance, full coverage, and replay.
+- Local browser regression: 166 passed, four non-touch-project touch checks intentionally skipped, across desktop/portrait Chromium, WebKit, Android Chromium emulation, and iPhone WebKit emulation. Both languages exercise complete two- and three-destination rounds, keyboard and touch, natural landing, frozen correction/collection states, results/replay/change selection/home, language switching in selection/correction/pause/results, unchanged lesson evidence, reload-to-selection, and existing guided/practice/progress flows. axe checks cover the new selection, active board, correction, and results screens. Three-lane checks use 320 × 568 and large targets.
+- Browser clocks drive countdown/landing deterministically. Visibility tests dispatch hidden/visible events and verify that hidden controls cannot submit, returning stays paused, and resuming has no background-time jump. They are software checks, not physical-device observations.
+- Local Firefox still fails before navigation with the previously documented profile-folder error, including outside the shell sandbox and with `/private/tmp` profiles. Linux CI will check all six browser projects; local Firefox is not counted as passing.
+- Screenshot review prompted shorter instructions, a shorter track, and Drop/Pause immediately below lane selection for small-phone use. German three-lane and English results layouts were visually reviewed. Hosted playable preview validation is recorded on the implementation PR after deployment.
+- No beginner study, physical-device screen-reader session, or recall improvement is claimed. The existing Phase 5 manual protocols remain applicable; round completion establishes software coverage, not learning mastery.
+
+### Expanded selection and Space shortcut (2026-10-04)
+
+At the owner's request, Phase 6 now permits two to twenty destinations. Space and down arrow both drop from the focused board; clicking a lane returns focus there. Native controls elsewhere retain Space behavior. Boards above three lanes scroll horizontally, and keyboard movement keeps the selected lane visible.
+
+- Translation parity, TypeScript/build, diff check, 33 unit tests and the translation-check script test passed. Larger catalogue selections and a complete all-118-element/all-20-destination round are covered.
+- Updated falling browser flows: 48 passed, two expected non-touch skips, across desktop/portrait Chromium, WebKit, Android and iPhone emulation. Both languages cover all-20 selection, 118-element round capacity, last-lane keyboard visibility, Space after clicking a lane, held-key rejection, native Space scope, axe audits, and no page overflow at 320px. Existing falling/correction/pause/results flows remain passing.
+- German 320px all-20 board screenshot reviewed. Hosted preview and Linux CI results are recorded on PR #18 after deployment. The prior full-suite evidence above describes the earlier head.

@@ -17,7 +17,7 @@ There are 20 destinations: groups 1–18, Lanthanoids / Lanthanoide, and Actinoi
 
 Hydrogen belongs to group 1 and helium to group 18. Numbered destination labels are neutral “Group N” / “Gruppe N”; group 1 is not labelled “alkali metals,” and the catalogue does not imply identical properties for every member of a column, including superheavy elements. The existing alkali lesson continues to exclude hydrogen. Collection and placement teach membership; they do not represent chemical reactions.
 
-`elementsForDestinations` accepts exactly two or three distinct valid destinations and returns every assigned element once in catalogue order. Future game rules must shuffle that coverage once per round and retry mistakes on the same element; this helper does not implement a round or change saved learning evidence. Tests check the complete source-derived columns and periods, all possible valid selections, translation coverage, invalid selections, and compatibility with the six-element lesson.
+`elementsForDestinations` accepts two to twenty distinct valid destinations and returns every assigned element once in catalogue order. The falling rules in `src/game/falling.ts` shuffle that coverage once per round and retry mistakes on the same element. This helper itself does not implement a round or change saved learning evidence. Tests check the complete source-derived columns and periods, all pairs/triples and larger selections through all 20 destinations, translation coverage, invalid selections, and compatibility with the six-element lesson.
 
 ## First lesson data
 

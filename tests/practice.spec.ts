@@ -20,7 +20,7 @@ for (const language of ['en', 'de'] as const) {
         }
         await page.getByRole('button', { name: de ? 'Übung starten' : 'Start practice', exact: true }).click();
       } else {
-        for (let tab = 0; tab < 5; tab++) await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
+        for (let tab = 0; tab < 6; tab++) await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
         await expect(page.getByRole('button', { name: de ? 'Übung starten' : 'Start practice', exact: true })).toBeFocused();
         await page.keyboard.press('Enter');
         await expect(page.getByRole('progressbar')).toHaveAttribute('value', '0');

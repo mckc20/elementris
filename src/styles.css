@@ -157,3 +157,59 @@ progress::-moz-progress-bar { background: var(--accent); }
   .brand { font-size: 21px; }
   .brand-mark { width: 30px; height: 30px; margin-right: 7px; }
 }
+
+/* Falling rounds share the raised-tile palette; selected lanes have text and outlines. */
+.play-card, .round-summary { margin: 24px 0; padding: 18px; background: var(--peach); border: 1.5px solid var(--ink); border-radius: 12px; box-shadow: 0 5px 0 var(--ink); text-align: left; }
+.play-card h2, .round-summary h2 { font-size: 22px; margin: 0 0 12px; }
+.play-card p, .round-summary p { font-size: 14px; line-height: 1.5; margin: 8px 0; }
+.destination-selector { margin: 24px 0; padding: 0; border: 0; text-align: left; }
+.destination-selector legend { font-size: 18px; font-weight: 750; margin-bottom: 12px; }
+.destination-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.destination-option { display: flex; align-items: center; gap: 8px; min-height: 64px; padding: 10px; border: 1.5px solid var(--ink); border-radius: 10px; background: var(--background); cursor: pointer; }
+.destination-option.is-selected { background: var(--mint); outline: 2px solid var(--accent); outline-offset: 2px; }
+.destination-option:focus-within, .motion-option:focus-within { outline: 3px solid var(--accent); outline-offset: 4px; }
+.destination-option input, .motion-option input { accent-color: var(--ink); width: 20px; height: 20px; flex-shrink: 0; }
+.destination-option strong, .destination-option small { display: block; }
+.destination-option strong { font-size: 14px; }
+.destination-option small { font-size: 11px; margin-top: 4px; }
+.destination-option:has(input:disabled) { opacity: 0.6; cursor: default; }
+.falling-page main { padding: 22px 0; }
+.round-identity { font-weight: 650; font-size: 14px; margin: 0; }
+.falling-board { border: 1.5px solid var(--ink); border-radius: 12px; padding: 8px; background: var(--background); }
+.falling-board:focus { outline: 3px solid var(--accent); outline-offset: 5px; }
+.falling-lanes { position: relative; overflow-x: auto; padding: 3px; }
+.many-lanes .falling-lanes-content { min-width: calc(var(--lane-count) * 112px); }
+.falling-tracks, .lane-controls { display: grid; grid-template-columns: repeat(var(--lane-count), minmax(0, 1fr)); gap: 8px; }
+.falling-track { height: 200px; border-radius: 8px; background: #e1e5de; position: relative; border: 1px dashed #20332d60; padding: 8px 4px; }
+.falling-track.active-lane { border: 2px solid var(--ink); }
+.falling-tile { display: flex; justify-content: center; }
+.falling-tile .element { width: min(92px, 100%); height: auto; min-height: 104px; padding: 7px; }
+.falling-tile .name { overflow-wrap: anywhere; }
+.falling-tile .element strong { letter-spacing: -1px; }
+.lane-floor { position: absolute; bottom: 6px; left: 4px; right: 4px; font-size: 11px; font-weight: 650; text-align: center; }
+.lane-controls { padding: 12px 0 5px; }
+.lane-control { padding: 10px 4px; font-size: 13px; min-width: 0; }
+.lane-0 { background: var(--lime); }
+.lane-1 { background: var(--mint); }
+.lane-2 { background: var(--peach); }
+.lane-control strong, .lane-control span { display: block; }
+.lane-control span { font-size: 10px; margin-top: 6px; }
+.lane-control[aria-pressed="true"] { outline: 2px solid var(--ink); outline-offset: 2px; }
+.falling-countdown { font-size: 14px; font-variant-numeric: tabular-nums; margin: 16px 0 0; }
+.falling-actions { display: flex; gap: 12px; margin-top: 12px; }
+.falling-actions > .button { flex: 1; }
+.pause-button { background: var(--background); }
+.motion-option { display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 12px; min-height: 44px; margin-top: 20px; }
+.falling-collection { text-align: left; margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--ink); }
+.falling-collection h2 { font-size: 18px; margin: 0 0 12px; }
+.falling-collection ul { list-style: none; padding: 0; display: grid; gap: 8px; }
+.falling-collection li { padding: 8px 12px; border: 1px solid var(--ink); border-radius: 8px; background: var(--mint); font-size: 13px; }
+.falling-collection li small { display: block; margin-top: 4px; }
+.falling-collection p { font-size: 12px; }
+@media (max-width: 380px) {
+  .falling-board { padding: 6px; }
+  .falling-tracks, .lane-controls { gap: 6px; }
+  .falling-tile .element strong { font-size: 30px; }
+  .lane-control { font-size: 12px; }
+  .lane-control strong { font-size: 11px; }
+}

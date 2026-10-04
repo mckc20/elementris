@@ -9,6 +9,7 @@
 ## Implementation workflow
 
 - Implement phase work on a branch and open a pull request with a Vercel preview for review. A phase issue can span several focused PRs; link each PR to the phase issue without closing it prematurely.
+- GitHub allows rebase merges only. When a merge is authorized, use `gh pr merge --rebase`; squash merges and merge commits are disabled. Check current PR readiness and merge the validated head commit.
 - Keep game rules separate from rendering and store lesson content as structured data.
 - Ship all new player-facing features and lesson prose in German and English using external JSON resources, including accessibility labels. Follow `docs/translations.md` and run `npm run check:translations`; keep feedback semantic and scientific identifiers independent of language.
 - Preserve the approved visual direction in `docs/design.md`. Build for portrait mobile use, keyboard access, and reduced-motion preferences.

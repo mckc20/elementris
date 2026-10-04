@@ -116,6 +116,19 @@ progress::-moz-progress-bar { background: var(--accent); }
 .game-page .family-column { padding: 12px 8px; }
 .game-page .feedback { min-height: 54px; padding-top: 12px; }
 .round-action { min-height: 62px; }
+.hint-button { margin-top: 10px; background: var(--peach); width: 100%; }
+.hint-button[aria-disabled="true"] { cursor: default; box-shadow: 0 2px 0 var(--ink); }
+.result-metrics { text-align: left; padding: 16px; background: var(--mint); border: 1.5px solid var(--ink); border-radius: 12px; box-shadow: 0 5px 0 var(--ink); margin: 24px 0; }
+.result-metrics > div { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 8px 0; }
+.result-metrics dt { font-size: 14px; }
+.result-metrics dd { margin: 0; font-size: 19px; font-weight: 750; white-space: nowrap; }
+.review-card { text-align: left; margin-top: 24px; padding: 18px; border: 1.5px solid var(--ink); border-radius: 12px; background: var(--peach); }
+.review-card h2 { font-size: 21px; margin: 0 0 12px; }
+.review-card ul { list-style: none; padding: 0; margin: 0; }
+.review-card li { margin: 12px 0; }
+.review-card li span { display: block; font-size: 12px; margin-top: 4px; }
+.review-card p { font-size: 14px; line-height: 1.5; }
+.secondary-action { margin-top: 18px; background: var(--background); }
 .game-page .orientation { margin-top: 14px; }
 @media (max-width: 380px) {
   .game-page .round-title { font-size: 23px; }

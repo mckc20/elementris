@@ -23,4 +23,6 @@ Phase 1 is complete and merged through PR #6 (`c54b231`); issue #1 is closed. Th
 
 Phase 2 is complete and merged through [PR #7](https://github.com/mckc20/elementris/pull/7); issue #2 is closed. The guided six-element lesson supports corrections, replay, and periodic-table orientation.
 
-Issue #8 is implemented on `codex/german-language` for PR review: German/English UI and lesson resources, highest-priority browser detection, remembered manual choices, semantic feedback, and an accessible top-right switch. It must merge before Phase 3. Future features must ship in both languages; see [translation guidance](translations.md). Independent practice and learning progress remain planned for phases 3 and 4.
+Issue #8 is complete and merged. German/English UI and lesson resources, highest-priority browser detection, remembered manual choices, semantic feedback, and the accessible top-right switch are available on `main`. Future features must ship in both languages; see [translation guidance](translations.md).
+
+Phase 3 is implemented on `codex/independent-practice` for PR review: guided-to-practice transition, a different element order, optional two-stage hints, unlimited corrections, transparent result calculations, elements to review, and practice replay. See [Phase 3 decisions](product.md#phase-3-implementation-choices). Validation covers result rules and complete desktop/portrait browser flows in both languages. Issue #3 stays open until review and merge. Saved learning progress remains planned for Phase 4.

@@ -7,6 +7,7 @@ import { TableOrientation } from './components/TableOrientation';
 import { firstLesson as lesson } from './content/lessons';
 import { startLesson, updateGame } from './game/rules';
 import type { GameAction } from './game/types';
+import { PracticeResults } from './components/PracticeResults';
 
 export function App() {
   const { t } = useTranslation();
@@ -14,14 +15,16 @@ export function App() {
   const [game, setGame] = useState(() => startLesson(lesson));
   const heading = useRef<HTMLHeadingElement>(null);
   const next = useRef<HTMLButtonElement>(null);
-  const element = lesson.elements[game.elementIndex];
+  const element = lesson.elements[game.order[game.elementIndex]];
   const family = lesson.families.find(item => item.id === element.familyId)!;
+  const practice = game.mode === 'practice';
+  const hints = game.records[game.elementIndex].hints;
 
   useEffect(() => {
     if (!started) return;
     if (game.status === 'placed') next.current?.focus();
     else heading.current?.focus();
-  }, [started, game.status, game.elementIndex]);
+  }, [started, game.status, game.elementIndex, game.mode]);
 
   function begin() {
     setGame(startLesson(lesson));
@@ -29,6 +32,10 @@ export function App() {
   }
   function act(action: GameAction) {
     setGame(current => updateGame(lesson, current, action));
+  }
+  function beginPractice() {
+    setGame(startLesson(lesson, 'practice'));
+    setStarted(true);
   }
 
   return (
@@ -51,7 +58,7 @@ export function App() {
           <p className="small-note">{t('lesson.hydrogen')}</p>
           <Button className="start-button" onClick={begin}>{t('lesson.start')} <span aria-hidden="true">→</span></Button>
           <p className="small-note">{t('lesson.pace')}</p>
-        </> : game.status === 'complete' ? <>
+        </> : game.status === 'complete' && practice ? <PracticeResults game={game} lesson={lesson} headingRef={heading} onReplay={beginPractice} onGuided={begin} /> : game.status === 'complete' ? <>
           <p className="eyebrow">{t('lesson.complete')}</p>
           <h1 ref={heading} tabIndex={-1}>{t('lesson.completeStart')}<br /><span>{t('lesson.completeEnd')}</span></h1>
           <p className="intro">{t('lesson.completeIntro')}</p>
@@ -63,18 +70,20 @@ export function App() {
             </section>)}
           </div>
           <Button onClick={begin}>{t('lesson.replay')} <span aria-hidden="true">↻</span></Button>
+          <Button className="start-button" onClick={beginPractice}>{t('practice.start')} <span aria-hidden="true">→</span></Button>
+          <p className="small-note">{t('practice.intro')}</p>
         </> : <>
-          <div className="round-meta"><span className="eyebrow">{t('lesson.guided')}</span><span>{t('lesson.placed', { placed: game.placed.length, total: lesson.elements.length })}</span></div>
-          <progress aria-label={t('lesson.progress')} value={game.placed.length} max={lesson.elements.length} />
+          <div className="round-meta"><span className="eyebrow">{t(practice ? 'practice.label' : 'lesson.guided')}</span><span>{t('lesson.placed', { placed: game.placed.length, total: lesson.elements.length })}</span></div>
+          <progress aria-label={t(practice ? 'practice.progress' : 'lesson.progress')} value={game.placed.length} max={lesson.elements.length} />
           <h1 className="round-title" ref={heading} tabIndex={-1}>{t('lesson.findFamily', { element: t(element.nameKey) })}</h1>
           <div className="current-element">
             <ElementTile element={element} tone="peach" />
-            <div><p className="group-label">{t('lesson.elementIndex', { index: game.elementIndex + 1, total: lesson.elements.length })}</p><p className="current-name">{t(element.nameKey)}</p><p className="description">{t('lesson.atomicNumber', { number: element.atomicNumber })}</p><p className="family-guide">{t('lesson.familyGuide', { family: t(family.nameKey), group: family.group })}</p></div>
+            <div><p className="group-label">{t('lesson.elementIndex', { index: game.elementIndex + 1, total: lesson.elements.length })}</p><p className="current-name">{t(element.nameKey)}</p><p className="description">{t('lesson.atomicNumber', { number: element.atomicNumber })}</p>{!practice && <p className="family-guide">{t('lesson.familyGuide', { family: t(family.nameKey), group: family.group })}</p>}</div>
           </div>
-          <p className="board-instruction">{t(game.status === 'placed' ? 'lesson.continue' : 'lesson.placeInstruction')}</p>
+          <p className="board-instruction">{t(game.status === 'placed' ? 'lesson.continue' : practice ? 'practice.instruction' : 'lesson.placeInstruction')}</p>
           <div className="board" aria-label={t('lesson.board')}>
             {lesson.families.map(item => {
-              const highlighted = game.status === 'ready' && item.id === element.familyId;
+              const highlighted = game.status === 'ready' && (!practice || hints === 2) && item.id === element.familyId;
               const placed = lesson.elements.filter(tile => tile.familyId === item.id && game.placed.includes(tile.atomicNumber));
               return <Button key={item.id} className={`family-column tile-${item.tone} ${highlighted ? 'highlighted' : ''}`}
                 aria-label={t('lesson.placeLabel', { element: t(element.nameKey), family: t(item.nameKey), highlighted: highlighted ? t('lesson.highlighted') : '' })}
@@ -89,8 +98,8 @@ export function App() {
               </Button>;
             })}
           </div>
-          <div className="feedback" role="status" aria-live="polite" aria-atomic="true">{t(`feedback.${game.feedback}`, { element: t(element.nameKey), family: t(`families.${family.id}.sentenceName`), group: family.group })}</div>
-          <div className="round-action">{game.status === 'placed' && <Button ref={next} className="next-button" onClick={() => act({ type: 'next' })}>{t(game.placed.length === lesson.elements.length ? 'lesson.finish' : 'lesson.next')} <span aria-hidden="true">→</span></Button>}</div>
+          <div className="feedback" role="status" aria-live="polite" aria-atomic="true">{t(practice && game.feedback === 'incorrect' ? 'practice.incorrect' : `feedback.${game.feedback}`, { element: t(element.nameKey), family: t(`families.${family.id}.sentenceName`), group: family.group })}</div>
+          <div className="round-action">{game.status === 'placed' ? <Button ref={next} className="next-button" onClick={() => act({ type: 'next' })}>{t(game.placed.length === lesson.elements.length ? practice ? 'practice.finish' : 'lesson.finish' : 'lesson.next')} <span aria-hidden="true">→</span></Button> : practice && <Button className="hint-button" aria-disabled={hints === 2} onClick={() => act({ type: 'hint' })}>{t(hints === 0 ? 'practice.hint' : hints === 1 ? 'practice.moreHelp' : 'practice.hintShown')}</Button>}</div>
           <TableOrientation />
           <p className="small-note">{t('lesson.collection')}</p>
         </>}

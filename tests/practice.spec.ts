@@ -20,7 +20,7 @@ for (const language of ['en', 'de'] as const) {
         }
         await page.getByRole('button', { name: de ? 'Übung starten' : 'Start practice', exact: true }).click();
       } else {
-        for (let tab = 0; tab < 4; tab++) await page.keyboard.press('Tab');
+        for (let tab = 0; tab < 5; tab++) await page.keyboard.press('Tab');
         await expect(page.getByRole('button', { name: de ? 'Übung starten' : 'Start practice', exact: true })).toBeFocused();
         await page.keyboard.press('Enter');
         await expect(page.getByRole('progressbar')).toHaveAttribute('value', '0');
@@ -90,6 +90,9 @@ for (const language of ['en', 'de'] as const) {
       }
       await expect(page.locator('.result-metrics dd').nth(1)).toHaveText('6 / 6');
       await expect(page.locator('.review-card li')).toHaveCount(0);
+      await page.getByRole('button', { name: de ? 'Back to home' : 'Zur Startseite', exact: true }).click();
+      await expect(page.getByRole('heading', { name: de ? 'Meet two element families.' : 'Lerne zwei Elementfamilien kennen.' })).toBeFocused();
+      await expect(page.getByRole('button', { name: de ? 'Start practice' : 'Übung starten', exact: true })).toBeVisible();
     });
   }
 }

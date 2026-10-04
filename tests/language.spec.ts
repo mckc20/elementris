@@ -19,7 +19,8 @@ test('German lesson completes and replays; switches preserve correction, placed 
   await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /Lerne Elementfamilien/);
   await expect(page.getByRole('heading', { name: 'Lerne zwei Elementfamilien kennen.' })).toBeVisible();
   await page.screenshot({ path: test.info().outputPath('german-introduction.png'), fullPage: true });
-  // The two language controls precede the lesson action in keyboard order.
+  // The home control and language controls precede the lesson action in keyboard order.
+  await page.keyboard.press('Tab');
   await page.keyboard.press('Tab');
   await expect(page.getByRole('button', { name: 'Deutsch', exact: true })).toBeFocused();
   await expect(page.getByRole('button', { name: 'Deutsch', exact: true })).toHaveCSS('outline-width', '3px');

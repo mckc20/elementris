@@ -12,6 +12,7 @@ test('reusable button has keyboard focus and respects reduced motion', async ({ 
   await page.keyboard.press('Tab');
   await page.keyboard.press('Tab');
   await page.keyboard.press('Tab');
+  await page.keyboard.press('Tab');
   await expect(button).toBeFocused();
   await expect(button).toHaveCSS('outline-style', 'solid');
   await expect(button).toHaveCSS('outline-width', '3px');

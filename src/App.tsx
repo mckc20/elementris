@@ -15,13 +15,21 @@ export function App() {
   const [game, setGame] = useState(() => startLesson(lesson));
   const heading = useRef<HTMLHeadingElement>(null);
   const next = useRef<HTMLButtonElement>(null);
+  const hasStarted = useRef(false);
   const element = lesson.elements[game.order[game.elementIndex]];
   const family = lesson.families.find(item => item.id === element.familyId)!;
   const practice = game.mode === 'practice';
   const hints = game.records[game.elementIndex].hints;
 
   useEffect(() => {
-    if (!started) return;
+    if (!started) {
+      if (hasStarted.current) {
+        heading.current?.focus();
+        window.scrollTo(0, 0);
+      }
+      return;
+    }
+    hasStarted.current = true;
     if (game.status === 'placed') next.current?.focus();
     else heading.current?.focus();
   }, [started, game.status, game.elementIndex, game.mode]);
@@ -37,13 +45,17 @@ export function App() {
     setGame(startLesson(lesson, 'practice'));
     setStarted(true);
   }
+  function goHome() {
+    setStarted(false);
+    setGame(startLesson(lesson));
+  }
 
   return (
-    <PageLayout className={started && game.status !== 'complete' ? 'game-page' : ''}>
+    <PageLayout className={started && game.status !== 'complete' ? 'game-page' : ''} onHome={goHome} showHome={started}>
       <div className="lesson">
         {!started ? <>
           <p className="eyebrow">{t('lesson.guided')}</p>
-          <h1>{t('lesson.headingStart')}<br /><span>{t('lesson.headingEnd')}</span></h1>
+          <h1 ref={heading} tabIndex={-1}>{t('lesson.headingStart')}<br /><span>{t('lesson.headingEnd')}</span></h1>
           <p className="intro">{t('lesson.intro')}</p>
           <p className="description">{t('lesson.description')}</p>
           <div className="family-intro">

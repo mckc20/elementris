@@ -8,10 +8,10 @@ export function ElementTile({ element, tone, className = '' }: {
   className?: string;
 }) {
   return (
-    <div className={`element tile-${tone} ${className}`}>
+    <span className={`element tile-${tone} ${className}`}>
       <span className="number">{element.atomicNumber}</span>
       <strong>{element.symbol}</strong>
       <span className="name">{element.name}</span>
-    </div>
+    </span>
   );
 }

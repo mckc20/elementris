@@ -31,16 +31,20 @@ Assess whether a beginner understands the task, places tiles comfortably on a ph
 - Vitest for meaningful game-rule checks and Playwright for important browser flows.
 - Vercel production deployment from `main`, with previews for pull requests.
 
-Phase 1 implements this application stack while retaining the Coming Soon experience. Structured lesson and game-state types establish boundaries; the lesson catalog is empty and no game rules, storage, or lesson UI are active. The game-state shape is provisional until Phase 2 resolves the lesson interaction. Vitest is ready for game-rule tests, and Playwright checks the production build on desktop and portrait mobile viewports.
+## Phase 2 implementation choices
 
-## Decisions still needed during implementation
+These choices are implemented for local review; they can be adjusted based on user feedback before the phase PR:
 
-- The exact beginner element set, lesson length, and completion criteria.
-- Consistent element-family color assignments within the approved palette.
-- Hint wording, result calculations, and rules for choosing targeted practice elements.
-- The browser support baseline and details of the progress schema.
+- Six elements, once each, in the order Li, He, Na, Ne, K, Ar. Alternating families introduces both early and keeps the lesson short.
+- Alkali metals use lime, noble gases use mint. The current element uses peach; the family name and highlighted destination explicitly teach its membership.
+- Both labelled columns remain large native buttons. Touch, Enter, and Space place a tile. A visible outline and “Place here” cue identify the guided destination.
+- Incorrect placement explains the correct family and group. The same element remains available for unlimited retries, without losing progress.
+- Correct placement collects the tile and shows confirmation. A separate Next element button lets the player read the feedback at their own pace; it receives keyboard focus. No timer or automatic advance.
+- Completion requires all six correct placements and confirmation with Finish lesson. Replay resets the round. Completion describes guided exposure, without claiming independent recall.
+- The miniature periodic table locates groups 1 and 18, with hydrogen excluded from the alkali highlight. Collection slots represent family membership, not exact table positions or chemical reactions.
+- Lesson data and scientific references are recorded in [lesson-data.md](lesson-data.md).
 
-Record these choices here as they are resolved. Verify scientific content against authoritative sources when preparing lesson data.
+Independent practice, optional hints, learning results, and saved progress remain planned for phases 3 and 4. The round currently resets on page refresh. Browser validation covers Chromium on desktop and small portrait viewports; a broader support baseline and the versioned progress schema remain to be resolved.
 
 ## Later scope
 

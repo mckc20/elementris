@@ -12,7 +12,7 @@ The Coming Soon page is the visual reference for Elementris. Preserve its palett
 | Tile fill | Peach `#f3d7a6` |
 | Secondary text | `#59675f` |
 
-Element-family color assignments have not been defined yet. The landing illustration's colors do not establish those assignments.
+Phase 2 assigns lime to alkali metals and mint to noble gases. Peach marks the current element before placement. These colors support explicit family labels and an outlined destination with a ‘Place here’ cue; they are not the only signal.
 
 ## Tile treatment
 
@@ -35,4 +35,4 @@ Use bold element symbols, clear atomic numbers, and smaller element names. Inter
 - Pair color feedback with text or icons. Keep controls usable with a keyboard and visible focus states.
 - Respect reduced-motion preferences when introducing drop, press, or celebration animations.
 
-The Coming Soon reference is now rendered by `src/App.tsx` with styles in `src/styles.css`. The original layout, copy, illustration transforms, and colors are preserved. Palette tokens, `ElementTile`, `Button`, and `PageLayout` are reusable foundations. Tile tones remain decorative rather than family assignments. The native button has a visible keyboard focus outline, a minimum 44px target, and press feedback that respects reduced-motion preferences; it is not shown on the Coming Soon page.
+The Coming Soon visual reference is carried into the lesson by palette tokens, the dotted background, bold typography, raised tiles, and native buttons. `ElementTile`, `Button`, and `PageLayout` remain reusable foundations. The lesson board has aligned columns with fixed collection slots, a textual placement cue, visible keyboard focus, and short tile-drop feedback. Reduced motion removes drop and press movement. After placement the player chooses when to advance; keyboard focus moves to that action, then to the next element heading. The overview's neutral hydrogen cell prevents implying it belongs to the alkali metals.

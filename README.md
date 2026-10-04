@@ -29,7 +29,9 @@ The Coming Soon page is the approved visual reference: soft lime, mint, and peac
 - Vitest for game rules and Playwright for mobile browser flows.
 - An installable progressive web app with offline lessons in a later iteration.
 
-Phase 1 implements the React/TypeScript/Vite foundation. The application still shows the approved Coming Soon page; lessons and game rules are not implemented yet. `src/components/` contains reusable element tiles, a native button, and the page layout. `src/content/` defines structured lesson types and an empty lesson catalog; `src/game/` defines the proposed state boundary without React dependencies.
+Phase 2 replaces Coming Soon with the first guided family lesson: an introduction, six untimed placements with corrections and retries, a periodic-table overview, completion, and replay. `src/content/` contains verified structured lesson data; `src/game/` holds pure progression rules; UI components render the lesson. See [lesson data and sources](docs/lesson-data.md).
+
+This phase is implemented locally and awaiting user feedback before a PR and Vercel preview. Independent practice and saved progress follow in later phases.
 
 ## Local development and checks
 
@@ -56,7 +58,7 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-Vitest is configured for future pure game-rule tests in `src/**/*.test.ts`. It currently allows no tests because Phase 1 has no game behavior. Playwright builds and serves the production output, then checks the Coming Soon page, asset loading, portrait/desktop layout, and reduced-motion rendering in Chromium. Screenshots are saved in ignored `test-results/`. On Linux, browser setup may require `npx playwright install --with-deps chromium`.
+Vitest checks retries, progression, duplicate placement protection, completion, and replay. Playwright builds and serves the production output, then checks the full guided flow, corrections, replay, keyboard focus, reduced motion, asset loading, and portrait layout in Chromium. Screenshots are saved in ignored `test-results/`. On Linux, browser setup may require `npx playwright install --with-deps chromium`.
 
 ## Hosting
 

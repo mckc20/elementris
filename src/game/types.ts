@@ -1,12 +1,10 @@
-/** Future rules operate on lesson IDs and state, without importing React. */
+import type { FamilyId } from '../content/types';
+
 export interface GameState {
   lessonId: string;
-  mode: 'guided' | 'practice';
+  status: 'ready' | 'placed' | 'complete';
   elementIndex: number;
-  placements: readonly {
-    atomicNumber: number;
-    familyId: string;
-    correct: boolean;
-  }[];
-  hintsUsed: number;
+  placed: readonly number[];
+  feedback: string;
 }
+export type GameAction = { type: 'place'; familyId: FamilyId } | { type: 'next' };

@@ -1,10 +1,12 @@
+import type { ElementSymbol } from './catalogue';
+export type { ElementSymbol } from './catalogue';
+
 /** Verified lesson content, independent of UI and game rules. */
 export interface ElementData {
   atomicNumber: number;
   symbol: string;
   nameKey: `elements.${ElementSymbol}`;
 }
-export type ElementSymbol = 'Li' | 'He' | 'Na' | 'Ne' | 'K' | 'Ar';
 export type FamilyId = 'alkali' | 'noble';
 export interface LessonElement extends ElementData {
   familyId: FamilyId;

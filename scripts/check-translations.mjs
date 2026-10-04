@@ -25,7 +25,9 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const load = language => JSON.parse(readFileSync(new URL(`${language}/translation.json`, directory), 'utf8'));
   const reference = load('en');
   translationEntries(reference);
-  for (const language of readdirSync(directory)) {
+  for (const entry of readdirSync(directory, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const language = entry.name;
     const errors = validateTranslations(reference, load(language));
     if (errors.length) throw new Error(`${language}:\n${errors.join('\n')}`);
   }

@@ -10,6 +10,10 @@ Each phase has one GitHub tracking issue. Implement phases in order; a phase may
 | 3. Independent practice | [#3](https://github.com/mckc20/elementris/issues/3) | Players practise recall with optional hints, corrections, and learning results |
 | 4. Progress | [#4](https://github.com/mckc20/elementris/issues/4) | Players can return to their progress and practise elements they find difficult |
 | 5. MVP validation | [#5](https://github.com/mckc20/elementris/issues/5) | Mobile usability, accessibility, and beginner learning have been evaluated |
+| 6. Falling game | [#13](https://github.com/mckc20/elementris/issues/13) | Falling single-element play with all 118 elements and two or three selected destinations |
+| 7. Whole-table lessons | [#14](https://github.com/mckc20/elementris/issues/14) | Expand guided learning and untimed practice |
+| 8. Evidence and review | [#15](https://github.com/mckc20/elementris/issues/15) | Shared evidence, coverage, short rounds, and review |
+| 9. Challenges | [#16](https://github.com/mckc20/elementris/issues/16) | Challenge modes and gameplay polish |
 
 ## Context handoff
 
@@ -18,6 +22,8 @@ Start a new chat with “Implement phase issue #N.” The issue contains scope, 
 Merged PRs and issue comments record completion. For unfinished work, record the branch/PR, what works, what remains, validation, and blockers on the phase issue before clearing context.
 
 ## Current state
+
+Phase 6 starts on `codex/phase-6-element-catalogue` with the verified 118-element catalogue, bilingual names/destination labels, documented classification convention, and complete-selection coverage helper. This is the first of the focused PRs suggested by #13. Falling rules/controls and Play/selection/results/accessibility screens remain; #13 stays open. Phase 6 does not depend on #14. See [catalogue sources](lesson-data.md#whole-table-catalogue-phase-6).
 
 Phase 1 is complete and merged through PR #6 (`c54b231`); issue #1 is closed. The production application is at https://elementris-alpha.vercel.app.
 

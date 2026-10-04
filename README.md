@@ -36,7 +36,7 @@ Phase 2 includes the local review feedback: collected names and symbols align on
 
 German and English are available throughout the lesson, with a top-right DE / EN switch. A saved manual choice overrides the highest-priority browser language; unsupported preferences use English. New features must provide external JSON translations in both languages. See [translation guidance](docs/translations.md).
 
-Phase 3 follows guided completion with untimed practice of the same six elements in a different order. Family clues and destination highlights are optional. Results separate first-answer correctness from unaided recall, show hint stages and retries, and identify elements to review. Results remain in memory until replay or refresh; see [calculation decisions](docs/product.md#phase-3-implementation-choices).
+Phase 3 follows guided completion with untimed practice of the same six elements in a freshly shuffled order each round. Family clues and destination highlights are optional. Results separate first-answer correctness from unaided recall, show hint stages and retries, and identify elements to review. Results remain in memory until replay or refresh; see [calculation decisions](docs/product.md#phase-3-implementation-choices).
 
 ## Local development and checks
 

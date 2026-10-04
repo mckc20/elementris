@@ -52,7 +52,7 @@ The implementation provides German and English for all current lesson screens, f
 
 ## Phase 3 implementation choices
 
-- Guided completion offers Start practice alongside guided replay. Practice uses the same elements in the fixed order Na, He, Li, Ar, K, Ne; practice replay resets records and repeats this order.
+- Guided completion offers Start practice alongside guided replay. Practice shuffles the same six elements at the start of every round, including replay, using Fisher–Yates. Each element appears exactly once. Order stays stable during the round; replay also resets all records. Independent random rounds can coincidentally have the same order. Guided order remains unchanged.
 - Practice removes the automatic family guide and destination highlight. Family labels, group numbers, and collected tiles remain visible. The first requested hint names the family; the second highlights the destination. Each element starts with no hints. Both hint stages remain available after a wrong answer.
 - A wrong answer explains the correct family and group, keeps the tile available, and never ends the round. It does not automatically highlight the destination. Players advance explicitly after each correct placement.
 - Each element records answer attempts, the correctness of the first answer, and hint stages requested (0–2). Only completed placements contribute to placement totals. Duplicate placement, hint, or Next actions after placement/completion cannot alter results.

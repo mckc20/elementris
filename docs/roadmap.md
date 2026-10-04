@@ -18,4 +18,6 @@ Merged PRs and issue comments record completion. For unfinished work, record the
 
 ## Current state
 
-The public repository and Vercel Git integration are configured. The production Coming Soon page is at https://elementris-alpha.vercel.app. Phase 1 introduces the React/TypeScript/Vite foundation, reusable visual components, structured content/state boundaries, and browser checks while retaining that page. Its PR preview must be validated and merged before Phase 1 is considered complete. Lessons, practice, and progress remain planned for subsequent phases.
+Phase 1 is complete and merged through PR #6 (`c54b231`); issue #1 is closed. The production application is at https://elementris-alpha.vercel.app.
+
+Phase 2 is implemented locally on `codex/phase-2-first-lesson`: verified six-element content, introduction, family placement with guided highlights and corrections, compact table orientation, completion, and replay. Pure rules and full desktop/portrait browser flows have automated coverage. User testing and feedback come before creating the PR, as requested. The phase remains open until PR preview validation and merge. Independent practice and progress are still planned for phases 3 and 4.

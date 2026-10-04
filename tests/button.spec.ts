@@ -6,7 +6,6 @@ import { Button } from '../src/components/Button';
 test('reusable button has keyboard focus and respects reduced motion', async ({ page }) => {
   await page.goto('/');
   // Mount the actual component's native markup with the application's production CSS.
-  // Keep foundation controls out of the public Coming Soon experience.
   const markup = renderToStaticMarkup(createElement(Button, {}, 'Continue'));
   await page.locator('main').evaluate((main, html) => { main.innerHTML = html; }, markup);
   const button = page.getByRole('button', { name: 'Continue' });

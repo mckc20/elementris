@@ -9,7 +9,7 @@ describe('guided family placement', () => {
     expect(wrong.status).toBe('ready');
     expect(wrong.elementIndex).toBe(0);
     expect(wrong.placed).toEqual([]);
-    expect(wrong.feedback).toContain('Lithium belongs to the alkali metals in group 1');
+    expect(wrong.feedback).toBe('incorrect');
     const corrected = updateGame(firstLesson, wrong, { type: 'place', familyId: 'alkali' });
     expect(corrected.status).toBe('placed');
     expect(corrected.placed).toEqual([3]);
@@ -38,6 +38,6 @@ describe('guided family placement', () => {
     const replay = startLesson(firstLesson);
     expect(replay.status).toBe('ready');
     expect(replay.placed).toEqual([]);
-    expect(replay.feedback).toBe('');
+    expect(replay.feedback).toBe('guide');
   });
 });

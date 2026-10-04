@@ -10,6 +10,7 @@
 
 - Implement phase work on a branch and open a pull request with a Vercel preview for review. A phase issue can span several focused PRs; link each PR to the phase issue without closing it prematurely.
 - Keep game rules separate from rendering and store lesson content as structured data.
+- Ship all new player-facing features and lesson prose in German and English using external JSON resources, including accessibility labels. Follow `docs/translations.md` and run `npm run check:translations`; keep feedback semantic and scientific identifiers independent of language.
 - Preserve the approved visual direction in `docs/design.md`. Build for portrait mobile use, keyboard access, and reduced-motion preferences.
 - Keep scientific facts accurate. Verify lesson data against authoritative chemistry sources when adding it; do not imply that collecting or clearing tiles represents a chemical reaction.
 - Run checks appropriate to the change. Once app scripts exist, use the documented build, type-check, and relevant tests. Verify meaningful game rules and browser flows; avoid tests that merely repeat the implementation.

@@ -1,0 +1,77 @@
+{
+  "language": {
+    "label": "Language",
+    "de": "Deutsch",
+    "en": "English"
+  },
+  "document": {
+    "title": "Elementris — Learn element families",
+    "description": "Learn element families with a short, guided periodic table lesson."
+  },
+  "footer": "Small tiles. Big discoveries.",
+  "lesson": {
+    "guided": "LESSON 01 · GUIDED",
+    "complete": "LESSON 01 · COMPLETE",
+    "title": "Meet two element families",
+    "headingStart": "Meet two",
+    "headingEnd": "element families.",
+    "intro": "Six small tiles. Two sides of the table.",
+    "description": "An element family is a group of elements with similar properties. Let’s get to know two of them.",
+    "hydrogen": "Hydrogen sits above the alkali metals, but is not an alkali metal.",
+    "start": "Start guided lesson",
+    "pace": "Tap the highlighted family. No timer. Take your time.",
+    "completeStart": "Two families.",
+    "completeEnd": "Six discoveries.",
+    "completeIntro": "You placed all six elements.",
+    "completeDescription": "You followed the guides. Replay to get familiar with the names and symbols.",
+    "replay": "Replay lesson",
+    "placed": "{{placed}} / {{total}} placed",
+    "progress": "Lesson progress",
+    "findFamily": "Find {{element}}’s family",
+    "elementIndex": "ELEMENT {{index}} OF {{total}}",
+    "atomicNumber": "Atomic number {{number}}",
+    "familyGuide": "{{family}} · group {{group}}",
+    "continue": "Placed! Continue when you’re ready.",
+    "placeInstruction": "Tap the highlighted family to place the tile.",
+    "board": "Element family columns",
+    "placeLabel": "Place {{element}} in {{family}}{{highlighted}}",
+    "highlighted": " (highlighted)",
+    "placeHere": "↓ Place here",
+    "placedHere": "✓ Placed",
+    "familyColumn": "Family column",
+    "finish": "Finish lesson",
+    "next": "Next element",
+    "collection": "The columns collect families, not exact table positions.",
+    "group": "GROUP {{group}}"
+  },
+  "feedback": {
+    "guide": "{{element}} is in the {{family}} family. Follow the guide above.",
+    "incorrect": "{{element}} belongs to the {{family}} in group {{group}}. Try the highlighted column.",
+    "correct": "{{element}} belongs to the {{family}}. Nicely placed!"
+  },
+  "families": {
+    "alkali": {
+      "name": "Alkali metals",
+      "sentenceName": "alkali metals",
+      "description": "Reactive metals on the left of the table."
+    },
+    "noble": {
+      "name": "Noble gases",
+      "sentenceName": "noble gases",
+      "description": "Very unreactive gases on the right of the table."
+    }
+  },
+  "elements": {
+    "Li": "Lithium",
+    "He": "Helium",
+    "Na": "Sodium",
+    "Ne": "Neon",
+    "K": "Potassium",
+    "Ar": "Argon"
+  },
+  "orientation": {
+    "label": "Periodic table overview: alkali metals in group 1 on the far left, excluding hydrogen; noble gases in group 18 on the far right. The detached rows are omitted.",
+    "left": "Group 1 · left edge",
+    "right": "Group 18 · right edge"
+  }
+}

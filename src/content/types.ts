@@ -2,8 +2,9 @@
 export interface ElementData {
   atomicNumber: number;
   symbol: string;
-  name: string;
+  nameKey: `elements.${ElementSymbol}`;
 }
+export type ElementSymbol = 'Li' | 'He' | 'Na' | 'Ne' | 'K' | 'Ar';
 export type FamilyId = 'alkali' | 'noble';
 export interface LessonElement extends ElementData {
   familyId: FamilyId;
@@ -11,14 +12,14 @@ export interface LessonElement extends ElementData {
 }
 export interface ElementFamily {
   id: FamilyId;
-  name: string;
+  nameKey: `families.${FamilyId}.name`;
   group: number;
   tone: 'lime' | 'mint';
-  description: string;
+  descriptionKey: `families.${FamilyId}.description`;
 }
 export interface Lesson {
   id: string;
-  title: string;
+  titleKey: 'lesson.title';
   families: readonly ElementFamily[];
   elements: readonly LessonElement[];
 }

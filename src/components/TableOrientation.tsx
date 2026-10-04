@@ -1,7 +1,10 @@
+import { useTranslation } from 'react-i18next';
+
 export function TableOrientation() {
+  const { t } = useTranslation();
   return (
     <figure className="orientation">
-      <div className="table-map" role="img" aria-label="Periodic table overview: alkali metals in group 1 on the far left, excluding hydrogen; noble gases in group 18 on the far right. The detached rows are omitted.">
+      <div className="table-map" role="img" aria-label={t('orientation.label')}>
         {Array.from({ length: 126 }, (_, index) => {
           const row = Math.floor(index / 18);
           const column = index % 18;
@@ -10,7 +13,7 @@ export function TableOrientation() {
           return <span key={index} className={exists ? `map-cell tile-${tone}` : 'map-gap'} />;
         })}
       </div>
-      <figcaption><span>Group 1 · left edge</span><span>Group 18 · right edge</span></figcaption>
+      <figcaption><span>{t('orientation.left')}</span><span>{t('orientation.right')}</span></figcaption>
     </figure>
   );
 }

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useEffect, useRef, useState } from 'react';
 import { Button } from './components/Button';
 import { ElementTile } from './components/ElementTile';
@@ -8,6 +9,7 @@ import { startLesson, updateGame } from './game/rules';
 import type { GameAction } from './game/types';
 
 export function App() {
+  const { t } = useTranslation();
   const [started, setStarted] = useState(false);
   const [game, setGame] = useState(() => startLesson(lesson));
   const heading = useRef<HTMLHeadingElement>(null);
@@ -33,52 +35,52 @@ export function App() {
     <PageLayout className={started && game.status !== 'complete' ? 'game-page' : ''}>
       <div className="lesson">
         {!started ? <>
-          <p className="eyebrow">LESSON 01 · GUIDED</p>
-          <h1>Meet two<br /><span>element families.</span></h1>
-          <p className="intro">Six small tiles. Two sides of the table.</p>
-          <p className="description">An element family is a group of elements with similar properties. Let’s get to know two of them.</p>
+          <p className="eyebrow">{t('lesson.guided')}</p>
+          <h1>{t('lesson.headingStart')}<br /><span>{t('lesson.headingEnd')}</span></h1>
+          <p className="intro">{t('lesson.intro')}</p>
+          <p className="description">{t('lesson.description')}</p>
           <div className="family-intro">
             {lesson.families.map(item => <section key={item.id} className={`family-card tile-${item.tone}`}>
-              <span className="group-label">GROUP {item.group}</span>
-              <h2>{item.name}</h2>
-              <p>{item.description}</p>
+              <span className="group-label">{t('lesson.group', { group: item.group })}</span>
+              <h2>{t(item.nameKey)}</h2>
+              <p>{t(item.descriptionKey)}</p>
               <p className="family-symbols">{lesson.elements.filter(tile => tile.familyId === item.id).map(tile => tile.symbol).join(' · ')}</p>
             </section>)}
           </div>
           <TableOrientation />
-          <p className="small-note">Hydrogen sits above the alkali metals, but is not an alkali metal.</p>
-          <Button className="start-button" onClick={begin}>Start guided lesson <span aria-hidden="true">→</span></Button>
-          <p className="small-note">Tap the highlighted family. No timer. Take your time.</p>
+          <p className="small-note">{t('lesson.hydrogen')}</p>
+          <Button className="start-button" onClick={begin}>{t('lesson.start')} <span aria-hidden="true">→</span></Button>
+          <p className="small-note">{t('lesson.pace')}</p>
         </> : game.status === 'complete' ? <>
-          <p className="eyebrow">LESSON 01 · COMPLETE</p>
-          <h1 ref={heading} tabIndex={-1}>Two families.<br /><span>Six discoveries.</span></h1>
-          <p className="intro">You placed all six elements.</p>
-          <p className="description">You followed the guides. Replay to get familiar with the names and symbols.</p>
+          <p className="eyebrow">{t('lesson.complete')}</p>
+          <h1 ref={heading} tabIndex={-1}>{t('lesson.completeStart')}<br /><span>{t('lesson.completeEnd')}</span></h1>
+          <p className="intro">{t('lesson.completeIntro')}</p>
+          <p className="description">{t('lesson.completeDescription')}</p>
           <div className="family-intro result-families">
             {lesson.families.map(item => <section key={item.id} className={`family-card tile-${item.tone}`}>
-              <span className="group-label">GROUP {item.group}</span><h2>{item.name}</h2>
-              <ul>{lesson.elements.filter(tile => tile.familyId === item.id).map(tile => <li key={tile.symbol}><strong>{tile.symbol}</strong> {tile.name}</li>)}</ul>
+              <span className="group-label">{t('lesson.group', { group: item.group })}</span><h2>{t(item.nameKey)}</h2>
+              <ul>{lesson.elements.filter(tile => tile.familyId === item.id).map(tile => <li key={tile.symbol}><strong>{tile.symbol}</strong> {t(tile.nameKey)}</li>)}</ul>
             </section>)}
           </div>
-          <Button onClick={begin}>Replay lesson <span aria-hidden="true">↻</span></Button>
+          <Button onClick={begin}>{t('lesson.replay')} <span aria-hidden="true">↻</span></Button>
         </> : <>
-          <div className="round-meta"><span className="eyebrow">LESSON 01 · GUIDED</span><span>{game.placed.length} / {lesson.elements.length} placed</span></div>
-          <progress aria-label="Lesson progress" value={game.placed.length} max={lesson.elements.length} />
-          <h1 className="round-title" ref={heading} tabIndex={-1}>Find {element.name}’s family</h1>
+          <div className="round-meta"><span className="eyebrow">{t('lesson.guided')}</span><span>{t('lesson.placed', { placed: game.placed.length, total: lesson.elements.length })}</span></div>
+          <progress aria-label={t('lesson.progress')} value={game.placed.length} max={lesson.elements.length} />
+          <h1 className="round-title" ref={heading} tabIndex={-1}>{t('lesson.findFamily', { element: t(element.nameKey) })}</h1>
           <div className="current-element">
             <ElementTile element={element} tone="peach" />
-            <div><p className="group-label">ELEMENT {game.elementIndex + 1} OF {lesson.elements.length}</p><p className="current-name">{element.name}</p><p className="description">Atomic number {element.atomicNumber}</p><p className="family-guide">{family.name} · group {family.group}</p></div>
+            <div><p className="group-label">{t('lesson.elementIndex', { index: game.elementIndex + 1, total: lesson.elements.length })}</p><p className="current-name">{t(element.nameKey)}</p><p className="description">{t('lesson.atomicNumber', { number: element.atomicNumber })}</p><p className="family-guide">{t('lesson.familyGuide', { family: t(family.nameKey), group: family.group })}</p></div>
           </div>
-          <p className="board-instruction">{game.status === 'placed' ? 'Placed! Continue when you’re ready.' : 'Tap the highlighted family to place the tile.'}</p>
-          <div className="board" aria-label="Element family columns">
+          <p className="board-instruction">{t(game.status === 'placed' ? 'lesson.continue' : 'lesson.placeInstruction')}</p>
+          <div className="board" aria-label={t('lesson.board')}>
             {lesson.families.map(item => {
               const highlighted = game.status === 'ready' && item.id === element.familyId;
               const placed = lesson.elements.filter(tile => tile.familyId === item.id && game.placed.includes(tile.atomicNumber));
               return <Button key={item.id} className={`family-column tile-${item.tone} ${highlighted ? 'highlighted' : ''}`}
-                aria-label={`Place ${element.name} in ${item.name}${highlighted ? ' (highlighted)' : ''}`}
+                aria-label={t('lesson.placeLabel', { element: t(element.nameKey), family: t(item.nameKey), highlighted: highlighted ? t('lesson.highlighted') : '' })}
                 aria-disabled={game.status === 'placed'} onClick={() => act({ type: 'place', familyId: item.id })}>
-                <span className="group-label">GROUP {item.group}</span><span className="column-title">{item.name}</span>
-                <span className="destination">{highlighted ? '↓ Place here' : game.status === 'placed' && item.id === element.familyId ? '✓ Placed' : 'Family column'}</span>
+                <span className="group-label">{t('lesson.group', { group: item.group })}</span><span className="column-title">{t(item.nameKey)}</span>
+                <span className="destination">{t(highlighted ? 'lesson.placeHere' : game.status === 'placed' && item.id === element.familyId ? 'lesson.placedHere' : 'lesson.familyColumn')}</span>
                 <span className="tile-slots" aria-hidden="true">
                   {Array.from({ length: 3 }, (_, index) => placed[index]
                     ? <ElementTile key={placed[index].symbol} element={placed[index]} tone={item.tone} className={placed[index].atomicNumber === element.atomicNumber ? 'placed-tile' : ''} />
@@ -87,10 +89,10 @@ export function App() {
               </Button>;
             })}
           </div>
-          <div className="feedback" role="status" aria-live="polite" aria-atomic="true">{game.feedback || `${element.name} is in the ${family.name.toLowerCase()} family. Follow the guide above.`}</div>
-          <div className="round-action">{game.status === 'placed' && <Button ref={next} className="next-button" onClick={() => act({ type: 'next' })}>{game.placed.length === lesson.elements.length ? 'Finish lesson' : 'Next element'} <span aria-hidden="true">→</span></Button>}</div>
+          <div className="feedback" role="status" aria-live="polite" aria-atomic="true">{t(`feedback.${game.feedback}`, { element: t(element.nameKey), family: t(`families.${family.id}.sentenceName`), group: family.group })}</div>
+          <div className="round-action">{game.status === 'placed' && <Button ref={next} className="next-button" onClick={() => act({ type: 'next' })}>{t(game.placed.length === lesson.elements.length ? 'lesson.finish' : 'lesson.next')} <span aria-hidden="true">→</span></Button>}</div>
           <TableOrientation />
-          <p className="small-note">The columns collect families, not exact table positions.</p>
+          <p className="small-note">{t('lesson.collection')}</p>
         </>}
       </div>
     </PageLayout>

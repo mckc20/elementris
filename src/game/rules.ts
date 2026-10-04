@@ -1,10 +1,15 @@
 import type { Lesson } from '../content/types';
 import type { GameAction, GameState } from './types';
 
-export function startLesson(lesson: Lesson, mode: GameState['mode'] = 'guided'): GameState {
-  // Reverse each half to repeat the same elements without the guided sequence.
-  const indexes = lesson.elements.map((_, index) => index);
-  const order = mode === 'guided' ? indexes : [...indexes.slice(0, 3).reverse(), ...indexes.slice(3).reverse()];
+export function startLesson(lesson: Lesson, mode: GameState['mode'] = 'guided', random = Math.random): GameState {
+  const order = lesson.elements.map((_, index) => index);
+  if (mode === 'practice') {
+    // Fisher–Yates: choose a new permutation once per round, keeping every element.
+    for (let index = order.length - 1; index > 0; index--) {
+      const other = Math.floor(random() * (index + 1));
+      [order[index], order[other]] = [order[other], order[index]];
+    }
+  }
   return {
     lessonId: lesson.id, mode, order, status: 'ready', elementIndex: 0, placed: [],
     records: order.map(index => ({ atomicNumber: lesson.elements[index].atomicNumber, attempts: 0, hints: 0, firstAttemptCorrect: null })),

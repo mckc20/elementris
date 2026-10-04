@@ -3,12 +3,21 @@ import { firstLesson as lesson } from '../content/lessons';
 import { practiceResults, startLesson, updateGame } from './rules';
 
 describe('independent practice', () => {
-  it('reuses every lesson element once in a different order and starts with recall', () => {
-    const state = startLesson(lesson, 'practice');
-    expect(state.order).not.toEqual(startLesson(lesson).order);
+  it('shuffles practice from fresh randomness while keeping every element exactly once', () => {
+    const state = startLesson(lesson, 'practice', () => 0);
+    const replay = startLesson(lesson, 'practice', () => 0.5);
+    expect(state.order).not.toEqual(replay.order);
     expect([...state.order].sort()).toEqual(lesson.elements.map((_, index) => index));
+    expect([...replay.order].sort()).toEqual([...state.order].sort());
+    expect(state.records.map(record => record.atomicNumber)).toEqual(state.order.map(index => lesson.elements[index].atomicNumber));
+    expect(updateGame(lesson, state, { type: 'hint' }).order).toBe(state.order);
     expect(state.feedback).toBe('recall');
     expect(state.records.every(record => record.hints === 0)).toBe(true);
+  });
+
+  it('preserves guided order without consuming randomness', () => {
+    const state = startLesson(lesson, 'guided', () => { throw new Error('Guided rounds must not shuffle'); });
+    expect(state.order).toEqual(lesson.elements.map((_, index) => index));
   });
 
   it('offers a family clue before a destination and resets hints for the next element', () => {

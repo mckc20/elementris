@@ -2,13 +2,13 @@
 
 Each phase has one GitHub tracking issue. Implement phases in order; a phase may be delivered through multiple focused pull requests.
 
-| Phase | Outcome |
-| --- | --- |
-| 1. Foundation | A deployable React/TypeScript/Vite app and reusable visual components |
-| 2. First lesson | A beginner can complete a guided family-placement lesson on a phone |
-| 3. Independent practice | Players practise recall with optional hints, corrections, and learning results |
-| 4. Progress | Players can return to their progress and practise elements they find difficult |
-| 5. MVP validation | Mobile usability, accessibility, and beginner learning have been evaluated |
+| Phase | Tracking issue | Outcome |
+| --- | --- | --- |
+| 1. Foundation | [#1](https://github.com/mckc20/elementris/issues/1) | A deployable React/TypeScript/Vite app and reusable visual components |
+| 2. First lesson | [#2](https://github.com/mckc20/elementris/issues/2) | A beginner can complete a guided family-placement lesson on a phone |
+| 3. Independent practice | [#3](https://github.com/mckc20/elementris/issues/3) | Players practise recall with optional hints, corrections, and learning results |
+| 4. Progress | [#4](https://github.com/mckc20/elementris/issues/4) | Players can return to their progress and practise elements they find difficult |
+| 5. MVP validation | [#5](https://github.com/mckc20/elementris/issues/5) | Mobile usability, accessibility, and beginner learning have been evaluated |
 
 ## Context handoff
 

@@ -8,6 +8,7 @@ import { firstLesson as lesson } from './content/lessons';
 import { startLesson, updateGame } from './game/rules';
 import type { GameAction } from './game/types';
 import { PracticeResults } from './components/PracticeResults';
+import { FallingPlay } from './components/FallingPlay';
 import { clearProgress, emptyLessonProgress, emptyProgress, readProgress, recordProgress, reviewElements, writeProgress } from './game/progress';
 
 export function App() {
@@ -18,17 +19,19 @@ export function App() {
   const saved = progress.lessons[lesson.id] ?? emptyLessonProgress();
   const review = reviewElements(saved);
   const [started, setStarted] = useState(false);
+  const [playOpen, setPlayOpen] = useState(() => window.location.hash === '#play');
   const [game, setGame] = useState(() => startLesson(lesson));
   const heading = useRef<HTMLHeadingElement>(null);
   const next = useRef<HTMLButtonElement>(null);
   const resetConfirmation = useRef<HTMLButtonElement>(null);
-  const hasStarted = useRef(false);
+  const hasStarted = useRef(playOpen);
   const element = lesson.elements[game.order[game.elementIndex]];
   const family = lesson.families.find(item => item.id === element.familyId)!;
   const practice = game.mode === 'practice';
   const hints = game.records[game.elementIndex].hints;
 
   useEffect(() => {
+    if (playOpen) return;
     if (!started) {
       if (hasStarted.current) {
         heading.current?.focus();
@@ -39,7 +42,7 @@ export function App() {
     hasStarted.current = true;
     if (game.status === 'placed') next.current?.focus();
     else heading.current?.focus();
-  }, [started, game.status, game.elementIndex, game.mode]);
+  }, [started, playOpen, game.status, game.elementIndex, game.mode]);
 
   useEffect(() => { setStorageAvailable(writeProgress(progress)); }, []);
 
@@ -76,9 +79,18 @@ export function App() {
     setStarted(true);
   }
   function goHome() {
+    setPlayOpen(false);
+    window.history.replaceState(null, '', window.location.pathname + window.location.search);
     setStarted(false);
     setGame(startLesson(lesson));
   }
+  function beginPlay() {
+    hasStarted.current = true;
+    window.history.replaceState(null, '', '#play');
+    setPlayOpen(true);
+  }
+
+  if (playOpen) return <FallingPlay onHome={goHome} />;
 
   return (
     <PageLayout className={started && game.status !== 'complete' ? 'game-page' : ''} onHome={goHome} showHome={started}>
@@ -87,6 +99,11 @@ export function App() {
           <p className="eyebrow">{t('lesson.guided')}</p>
           <h1 ref={heading} tabIndex={-1}>{t('lesson.headingStart')}<br /><span>{t('lesson.headingEnd')}</span></h1>
           <p className="intro">{t('lesson.intro')}</p>
+          <section className="play-card" aria-labelledby="play-title">
+            <h2 id="play-title">{t('falling.homeTitle')}</h2>
+            <p>{t('falling.homeDescription')}</p>
+            <Button className="start-button" onClick={beginPlay}>{t('falling.play')} <span aria-hidden="true">→</span></Button>
+          </section>
           <section className="progress-card" aria-label={t('progress.selection')}>
             <h2>{t('progress.selection')}</h2>
             <h3>{t(lesson.titleKey)}</h3>

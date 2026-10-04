@@ -42,7 +42,7 @@ Phase 4 adds a lesson selection card with guided progress, full-practice complet
 
 ## Local development and checks
 
-Phase 6 begins with a shared 118-element catalogue in `src/content/catalogue.ts`, external German/English names and destination labels, and complete coverage for selections of two or three groups/series. The first lesson reuses its element identities. The falling game and its screens are pending in [issue #13](https://github.com/mckc20/elementris/issues/13); see [classification conventions and scientific sources](docs/lesson-data.md#whole-table-catalogue-phase-6).
+Phase 6 adds Play directly from home: select two or three of the 18 groups or two series and steer every selected element once in a shuffled falling round. Tiles fall over 12 seconds, with touch/keyboard lane selection, early Drop, pause, correction/retry, results, and replay. Reduced motion uses a stationary countdown; hidden pages pause until explicit resume. Falling results stay separate from saved lesson evidence. All 118 elements and bilingual names come from `src/content/catalogue.ts`; see [rules and decisions](docs/product.md#phase-6-implementation-choices) and [scientific sources](docs/lesson-data.md#whole-table-catalogue-phase-6). This implementation awaits PR review and merge for [issue #13](https://github.com/mckc20/elementris/issues/13).
 
 Use Node.js 22.12 or later and npm. From a fresh checkout:
 

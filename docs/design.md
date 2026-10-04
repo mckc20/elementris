@@ -35,4 +35,4 @@ Use bold element symbols, clear atomic numbers, and smaller element names. Inter
 - Pair color feedback with text or icons. Keep controls usable with a keyboard and visible focus states.
 - Respect reduced-motion preferences when introducing drop, press, or celebration animations.
 
-The current reference implementation is `public/index.html` and `public/styles.css`.
+The Coming Soon reference is now rendered by `src/App.tsx` with styles in `src/styles.css`. The original layout, copy, illustration transforms, and colors are preserved. Palette tokens, `ElementTile`, `Button`, and `PageLayout` are reusable foundations. Tile tones remain decorative rather than family assignments. The native button has a visible keyboard focus outline, a minimum 44px target, and press feedback that respects reduced-motion preferences; it is not shown on the Coming Soon page.

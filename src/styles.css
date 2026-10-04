@@ -1,8 +1,15 @@
 :root {
+  --background: #f5f7f2;
+  --ink: #20332d;
+  --accent: #377f64;
+  --lime: #d9e9b9;
+  --mint: #bce5d9;
+  --peach: #f3d7a6;
+  --secondary: #59675f;
   color-scheme: light;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #20332d;
-  background: #f5f7f2;
+  color: var(--ink);
+  background: var(--background);
   font-synthesis: none;
 }
 
@@ -19,32 +26,35 @@ body { margin: 0; }
 .brand { display: flex; align-items: center; font-weight: 750; font-size: 24px; letter-spacing: -1px; }
 .brand-mark {
   display: grid; place-items: center; width: 34px; height: 34px; margin-right: 10px;
-  border: 2px solid #20332d; border-radius: 8px; font-size: 26px; line-height: 1;
+  border: 2px solid var(--ink); border-radius: 8px; font-size: 26px; line-height: 1;
 }
-.brand-dot { color: #377f64; }
+.brand-dot { color: var(--accent); }
 main { margin: auto; padding: 56px 0; width: 100%; text-align: center; }
 .elements { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 42px; padding: 10px 0; }
 .element {
   width: 104px; height: 118px; padding: 10px 12px; display: flex; flex-direction: column;
-  text-align: left; border: 1.5px solid #20332d; border-radius: 12px;
-  box-shadow: 0 5px 0 #20332d; color: #20332d;
+  text-align: left; border: 1.5px solid var(--ink); border-radius: 12px;
+  box-shadow: 0 5px 0 var(--ink); color: var(--ink);
 }
 .number { font-size: 13px; font-weight: 650; }
 .element strong { font-size: 42px; line-height: 1.25; letter-spacing: -2px; }
 .name { font-size: 11px; font-weight: 600; }
-.sodium { background: #d9e9b9; transform: rotate(-8deg) translateY(9px); }
-.oxygen { background: #bce5d9; transform: translateY(-12px); }
-.neon { background: #f3d7a6; transform: rotate(8deg) translateY(9px); }
+.tile-lime { background: var(--lime); }
+.tile-mint { background: var(--mint); }
+.tile-peach { background: var(--peach); }
+.sodium { transform: rotate(-8deg) translateY(9px); }
+.oxygen { transform: translateY(-12px); }
+.neon { transform: rotate(8deg) translateY(9px); }
 .status {
   display: inline-flex; align-items: center; gap: 8px; margin: 0 0 18px;
   font-size: 12px; font-weight: 600; color: #466254;
 }
-.status span { width: 7px; height: 7px; border-radius: 50%; background: #377f64; }
+.status span { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
 h1 { font-size: clamp(48px, 8vw, 88px); font-weight: 800; line-height: 1.05; letter-spacing: -0.06em; margin: 0 0 24px; }
-h1 span { color: #377f64; }
+h1 span { color: var(--accent); }
 .intro { font-size: clamp(21px, 3vw, 28px); line-height: 1.4; font-weight: 500; letter-spacing: -0.025em; margin: 0 0 18px; }
-.description { font-size: 15px; line-height: 1.7; color: #59675f; margin: 0; }
-footer { text-align: center; color: #59675f; font-size: 12px; }
+.description { font-size: 15px; line-height: 1.7; color: var(--secondary); margin: 0; }
+footer { text-align: center; color: var(--secondary); font-size: 12px; }
 @media (max-width: 380px) {
   .page { padding: 24px 20px 20px; }
   .element { width: 82px; height: 100px; padding: 8px 10px; }
@@ -55,4 +65,26 @@ footer { text-align: center; color: #59675f; font-size: 12px; }
 @media (max-height: 650px) {
   main { padding: 32px 0; }
   .elements { margin-bottom: 28px; }
+}
+
+.button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 12px 20px;
+  font: inherit;
+  font-weight: 650;
+  color: var(--ink);
+  background: var(--lime);
+  border: 1.5px solid var(--ink);
+  border-radius: 12px;
+  box-shadow: 0 5px 0 var(--ink);
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+.button:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 2px 0 var(--ink); }
+.button:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
+.button:disabled { opacity: 0.6; cursor: not-allowed; }
+@media (prefers-reduced-motion: reduce) {
+  .button { transition: none; }
+  .button:active:not(:disabled) { transform: none; box-shadow: 0 5px 0 var(--ink); }
 }

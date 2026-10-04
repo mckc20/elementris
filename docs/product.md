@@ -31,7 +31,7 @@ Assess whether a beginner understands the task, places tiles comfortably on a ph
 - Vitest for meaningful game-rule checks and Playwright for important browser flows.
 - Vercel production deployment from `main`, with previews for pull requests.
 
-This stack is planned for Phase 1. The deployed implementation is currently a static Coming Soon page.
+Phase 1 implements this application stack while retaining the Coming Soon experience. Structured lesson and game-state types establish boundaries; the lesson catalog is empty and no game rules, storage, or lesson UI are active. The game-state shape is provisional until Phase 2 resolves the lesson interaction. Vitest is ready for game-rule tests, and Playwright checks the production build on desktop and portrait mobile viewports.
 
 ## Decisions still needed during implementation
 

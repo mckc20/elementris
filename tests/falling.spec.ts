@@ -17,10 +17,14 @@ async function visibility(page: Page, hidden: boolean) {
   }, hidden);
 }
 async function screenCheck(page: Page) {
-  // axe uses timers internally; temporarily run the browser clock for its audit.
-  await page.clock.resume();
-  const result = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
-  await page.clock.pauseAt(await page.evaluate(() => Date.now() + 100));
+  // Drive axe's timers in bounded steps, keeping the clock paused between calls.
+  // Reading time and then pauseAt raced with a running clock on busy CI workers.
+  let finished = false;
+  // This app has no frames; same-page mode avoids axe creating/closing a
+  // temporary page while Playwright advances clocks throughout the context.
+  const audit = new AxeBuilder({ page }).setLegacyMode().withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze().finally(() => { finished = true; });
+  while (!finished) await page.clock.runFor(20);
+  const result = await audit;
   expect(result.violations).toEqual([]);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 }

@@ -61,11 +61,11 @@ The build writes the deployable application to `dist/`. `preview` serves that bu
 
 ```sh
 npm test
-npx playwright install chromium
+npx playwright install chromium firefox webkit
 npm run test:e2e
 ```
 
-Vitest checks retries, progression, duplicate placement protection, completion, replay, staged hints, and practice result calculations. Playwright builds and serves the production output, then checks the full guided-to-practice-to-results flow in both languages, corrections, replay, keyboard focus, reduced motion, asset loading, and portrait layout in Chromium. Screenshots are saved in ignored `test-results/`. On Linux, browser setup may require `npx playwright install --with-deps chromium`.
+Vitest checks retries, progression, duplicate placement protection, completion, replay, staged hints, and practice result calculations. Playwright builds and serves the production output, then checks the full guided-to-practice-to-results flow in both languages, corrections, replay, keyboard focus, reduced motion, asset loading, and portrait layout in Chromium, Firefox, and WebKit (desktop and emulated portrait devices). See [MVP validation](docs/mvp-validation.md) for evidence and pending real-device/beginner checks. Screenshots are saved in ignored `test-results/`. On Linux, browser setup may require `npx playwright install --with-deps chromium`.
 
 ## Hosting
 

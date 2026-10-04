@@ -5,7 +5,7 @@ const placements = [
   ['Neon', 'Noble gases'], ['Potassium', 'Alkali metals'], ['Argon', 'Noble gases'],
 ];
 
-test('guided lesson loads, corrects a mistake, completes and replays', async ({ page }) => {
+test('guided lesson loads, corrects a mistake, completes and replays', async ({ page, browserName }) => {
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
   page.on('requestfailed', request => errors.push(request.url()));
@@ -40,28 +40,28 @@ test('guided lesson loads, corrects a mistake, completes and replays', async ({ 
   expect(errors).toEqual([]);
 });
 
-test('complete keyboard flow works with reduced motion and visible focus', async ({ page }) => {
+test('complete keyboard flow works with reduced motion and visible focus', async ({ page, browserName }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
-  await page.keyboard.press('Tab');
+  await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
   await expect(page.getByRole('button', { name: 'Elementris start page' })).toBeFocused();
-  await page.keyboard.press('Tab');
+  await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
   await expect(page.getByRole('button', { name: 'Deutsch', exact: true })).toBeFocused();
-  await page.keyboard.press('Tab');
+  await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
   await expect(page.getByRole('button', { name: 'English', exact: true })).toBeFocused();
-  await page.keyboard.press('Tab');
+  await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
   await expect(page.getByRole('button', { name: 'Start guided lesson' })).toBeFocused();
   await page.keyboard.press('Enter');
   // Wrong destination, then return to the highlighted one and retry.
-  await page.keyboard.press('Tab');
-  await page.keyboard.press('Tab');
+  await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
+  await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
   await page.keyboard.press('Enter');
   await expect(page.getByRole('status')).toContainText('Try the highlighted column');
-  await page.keyboard.press('Shift+Tab');
+  await page.keyboard.press(browserName === 'webkit' ? 'Alt+Shift+Tab' : 'Shift+Tab');
   for (const [index, [element, family]] of placements.entries()) {
     if (index > 0) {
-      await page.keyboard.press('Tab');
-      if (family === 'Noble gases') await page.keyboard.press('Tab');
+      await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
+      if (family === 'Noble gases') await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
     }
     const target = page.getByRole('button', { name: `Place ${element} in ${family} (highlighted)` });
     await expect(target).toBeFocused();
@@ -73,7 +73,7 @@ test('complete keyboard flow works with reduced motion and visible focus', async
     await page.keyboard.press('Enter');
   }
   await expect(page.getByRole('heading', { name: 'Two families. Six discoveries.' })).toBeFocused();
-  await page.keyboard.press('Tab');
+  await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
   await page.keyboard.press('Enter');
   await expect(page.getByRole('heading', { name: 'Find Lithium’s family' })).toBeFocused();
 });

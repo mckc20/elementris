@@ -13,10 +13,10 @@ body { margin: 0; }
   background-image: radial-gradient(#20332d12 1px, transparent 1px); background-size: 24px 24px;
 }
 .brand { display: flex; align-items: center; font: inherit; font-weight: 750; font-size: 24px; letter-spacing: -1px; border: 0; padding: 0; background: transparent; color: var(--ink); min-height: 44px; cursor: pointer; border-radius: 8px; }
-.brand-mark { display: grid; place-items: center; width: 34px; height: 34px; margin-right: 10px; border: 2px solid var(--ink); border-radius: 8px; font-size: 26px; line-height: 1; }
+.brand-mark { display: grid; place-items: center; width: 34px; height: 34px; min-width: 1.2em; min-height: 1.2em; margin-right: 10px; border: 2px solid var(--ink); border-radius: 8px; font-size: 26px; line-height: 1; }
 .brand-dot { color: var(--accent); }
 main { margin: auto; padding: 40px 0; width: 100%; text-align: center; }
-.lesson { max-width: 540px; margin: 0 auto; }
+.lesson { max-width: 540px; margin: 0 auto; overflow-wrap: anywhere; }
 footer { text-align: center; color: var(--secondary); font-size: 12px; }
 footer p { margin: 0; }
 .home-button { display: block; margin: 0 auto 24px; background: var(--background); }
@@ -34,7 +34,7 @@ h1:focus { outline: none; }
 .number { font-size: 12px; font-weight: 650; }
 .element strong { font-size: 36px; line-height: 1.25; letter-spacing: -2px; }
 .name { font-size: 11px; font-weight: 600; }
-.button { min-width: 44px; min-height: 44px; padding: 12px 20px; font: inherit; font-weight: 650; color: var(--ink); background: var(--lime); border: 1.5px solid var(--ink); border-radius: 12px; box-shadow: 0 5px 0 var(--ink); cursor: pointer; transition: transform 120ms ease, box-shadow 120ms ease; }
+.button { min-width: 44px; max-width: 100%; min-height: 44px; overflow-wrap: anywhere; padding: 12px 20px; font: inherit; font-weight: 650; color: var(--ink); background: var(--lime); border: 1.5px solid var(--ink); border-radius: 12px; box-shadow: 0 5px 0 var(--ink); cursor: pointer; transition: transform 120ms ease, box-shadow 120ms ease; }
 .button:active:not(:disabled):not([aria-disabled="true"]) { transform: translateY(3px); box-shadow: 0 2px 0 var(--ink); }
 .button:focus-visible, .brand:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
 .button:disabled { opacity: 0.6; cursor: not-allowed; }
@@ -78,7 +78,7 @@ progress::-moz-progress-bar { background: var(--accent); }
 .tile-slots .element { display: grid; grid-template-columns: 18px 36px minmax(0, 1fr); align-items: center; column-gap: 8px; row-gap: 2px; padding: 5px 7px; box-shadow: 0 3px 0 var(--ink); }
 .tile-slots .element strong { font-size: 20px; letter-spacing: -1px; }
 .tile-slots .number { font-size: 10px; }
-.tile-slots .name { font-size: 10px; }
+.tile-slots .name { font-size: 10px; overflow-wrap: anywhere; }
 .placed-tile { animation: tile-drop 320ms ease-out; }
 @keyframes tile-drop { from { transform: translateY(-24px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 .feedback { font-size: 13px; line-height: 1.5; min-height: 58px; padding: 15px 4px 0; }
@@ -110,11 +110,12 @@ progress::-moz-progress-bar { background: var(--accent); }
 .game-page main { padding: 20px 0; }
 .game-page .round-title { font-size: 25px; margin-bottom: 14px; }
 .game-page progress { margin-bottom: 16px; }
-.game-page .current-element > .element { width: 78px; height: 88px; }
+.game-page .current-element > .element { width: 78px; min-height: 88px; height: auto; flex-shrink: 0; }
+.current-element > div:not(.element) { min-width: 0; overflow-wrap: anywhere; }
 .game-page .current-element .element strong { font-size: 30px; }
 .game-page .board-instruction { margin: 17px 0 10px; }
 .game-page .tile-slots { gap: 7px; margin-top: 8px; }
-.game-page .empty-slot, .game-page .tile-slots .element { height: 38px; }
+.game-page .empty-slot, .game-page .tile-slots .element { min-height: 38px; height: auto; }
 .game-page .family-column { padding: 12px 8px; }
 .game-page .feedback { min-height: 54px; padding-top: 12px; }
 .round-action { min-height: 62px; }
@@ -135,7 +136,7 @@ progress::-moz-progress-bar { background: var(--accent); }
 .progress-card h2 { margin: 0 0 16px; font-size: 22px; }
 .progress-card h3 { font-size: 17px; margin: 0 0 12px; }
 .progress-card p { font-size: 13px; line-height: 1.5; }
-.progress-card .small-note { font-size: 12px; }
+.progress-card .small-note { font-size: 12px; color: var(--ink); }
 .reset-progress { margin-top: 24px; }
 .reset-progress p { font-size: 14px; line-height: 1.5; }
 .game-page .orientation { margin-top: 14px; }
@@ -147,7 +148,7 @@ progress::-moz-progress-bar { background: var(--accent); }
   .game-page .family-column { padding: 10px 7px; }
 }
 
-.page-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.page-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
 .language-switch { display: flex; gap: 4px; }
 .language-switch .button { padding: 8px; font-size: 12px; border-radius: 8px; background: var(--background); box-shadow: 0 3px 0 var(--ink); }
 .language-switch .button[aria-pressed="true"] { background: var(--ink); color: var(--background); }

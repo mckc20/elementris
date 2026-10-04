@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 for (const [primary, expected] of [['de-AT', 'de'], ['de-DE', 'de'], ['de-CH', 'de'], ['en-US', 'en'], ['fr-FR', 'en']] as const) {
-  test(`browser preference ${primary} selects ${expected}`, async ({ page }) => {
+  test(`browser preference ${primary} selects ${expected}`, async ({ page, browserName }) => {
     await page.addInitScript(primary => {
       Object.defineProperty(navigator, 'languages', { value: [primary, 'de'] });
     }, primary);
@@ -11,7 +11,7 @@ for (const [primary, expected] of [['de-AT', 'de'], ['de-DE', 'de'], ['de-CH', '
   });
 }
 
-test('German lesson completes and replays; switches preserve correction, placed tiles and completion', async ({ page }) => {
+test('German lesson completes and replays; switches preserve correction, placed tiles and completion', async ({ page, browserName }) => {
   await page.addInitScript(() => Object.defineProperty(navigator, 'languages', { value: ['de-AT', 'en'] }));
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
@@ -20,12 +20,12 @@ test('German lesson completes and replays; switches preserve correction, placed 
   await expect(page.getByRole('heading', { name: 'Lerne zwei Elementfamilien kennen.' })).toBeVisible();
   await page.screenshot({ path: test.info().outputPath('german-introduction.png'), fullPage: true });
   // The home control and language controls precede the lesson action in keyboard order.
-  await page.keyboard.press('Tab');
-  await page.keyboard.press('Tab');
+  await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
+  await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
   await expect(page.getByRole('button', { name: 'Deutsch', exact: true })).toBeFocused();
   await expect(page.getByRole('button', { name: 'Deutsch', exact: true })).toHaveCSS('outline-width', '3px');
-  await page.keyboard.press('Tab');
-  await page.keyboard.press('Tab');
+  await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
+  await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
   await expect(page.getByRole('button', { name: 'Angeleitete Lektion starten' })).toBeFocused();
   await page.keyboard.press('Enter');
   await page.getByRole('button', { name: 'Platziere Lithium in der Familie Edelgase', exact: true }).click();
@@ -62,7 +62,7 @@ test('German lesson completes and replays; switches preserve correction, placed 
   await expect(page.getByRole('heading', { name: 'Meet two element families.' })).toBeVisible();
 });
 
-test('invalid saved preference falls back to the browser language', async ({ page }) => {
+test('invalid saved preference falls back to the browser language', async ({ page, browserName }) => {
   await page.addInitScript(() => {
     localStorage.setItem('elementris.language', 'broken');
     Object.defineProperty(navigator, 'languages', { value: [] });
@@ -72,7 +72,7 @@ test('invalid saved preference falls back to the browser language', async ({ pag
   await expect(page.locator('html')).toHaveAttribute('lang', 'de');
 });
 
-test('failed storage and unavailable preferences do not block a lesson or switching', async ({ page }) => {
+test('failed storage and unavailable preferences do not block a lesson or switching', async ({ page, browserName }) => {
   await page.addInitScript(() => {
     Object.defineProperty(window, 'localStorage', { get() { throw new Error('Storage blocked'); } });
     Object.defineProperty(navigator, 'languages', { value: [] });

@@ -77,3 +77,7 @@ The implementation provides German and English for all current lesson screens, f
 ## Later scope
 
 Additional families and lessons, exact table positions, timed challenges, and installable/offline PWA support follow the learning MVP. Accounts, leaderboards, and chemistry reaction mechanics are outside the current MVP scope.
+
+## Phase 5 validation status
+
+Cross-browser validation and a formative beginner protocol are documented in [MVP validation](mvp-validation.md). The proposed baseline is current desktop Chrome/Firefox/Safari and mobile Android Chrome/iOS Safari, pending owner agreement and real-device verification. Automated guided/practice flows establish software behavior only. No beginner results or recall improvement are claimed until actual participants complete baseline, unaided practice and follow-up recall tasks. See the validation document for findings and outstanding acceptance criteria.

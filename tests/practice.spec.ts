@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 for (const language of ['en', 'de'] as const) {
   for (const entry of ['guided', 'direct'] as const) {
-    test(`${language}: ${entry} entry to practice, staged hints, correction, results and replay`, async ({ page }) => {
+    test(`${language}: ${entry} entry to practice, staged hints, correction, results and replay`, async ({ page, browserName }) => {
       await page.addInitScript(language => localStorage.setItem('elementris.language', language), language);
       await page.emulateMedia({ reducedMotion: 'reduce' });
       await page.goto('/');
@@ -20,7 +20,7 @@ for (const language of ['en', 'de'] as const) {
         }
         await page.getByRole('button', { name: de ? 'Übung starten' : 'Start practice', exact: true }).click();
       } else {
-        for (let tab = 0; tab < 5; tab++) await page.keyboard.press('Tab');
+        for (let tab = 0; tab < 5; tab++) await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
         await expect(page.getByRole('button', { name: de ? 'Übung starten' : 'Start practice', exact: true })).toBeFocused();
         await page.keyboard.press('Enter');
         await expect(page.getByRole('progressbar')).toHaveAttribute('value', '0');

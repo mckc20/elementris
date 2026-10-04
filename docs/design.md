@@ -50,3 +50,7 @@ The full brand symbol and wordmark act as one keyboard-accessible home button wi
 ## Saved progress and lesson selection
 
 Phase 4 adds a mint lesson card near the top of the introduction. It shows distinct guided visits, guided/full-practice completion, latest unaided practice answers, and the review count. Guided, practice, and targeted-review actions sit within the card. Device-only storage and review rules are explained alongside the totals. The lesson's family introduction remains below. Reset uses an inline confirmation with native buttons and returns focus to the introduction after clearing or cancelling. Targeted practice uses the existing board and results with the actual subset size.
+
+## Phase 5 validation fixes
+
+Progress-card secondary text uses the approved deep-green ink to meet small-text contrast on mint. The header wraps when text grows; controls and lesson prose wrap long words, and current/collected tiles can grow vertically so enlarged text remains readable. The normal portrait layout retains two family columns and raised tiles. Phase 5 adds automated contrast, focus, touch and enlarged-text checks; physical-device and screen-reader observations remain pending in [MVP validation](mvp-validation.md).

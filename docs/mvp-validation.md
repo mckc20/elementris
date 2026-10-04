@@ -32,7 +32,7 @@ An external test URL disables the local server. Tests use isolated browser conte
 - Actual beginner observations: **none collected yet**. Recall improvement: **not established**.
 - Local verification on 2026-10-04 (macOS 27.0.1, Playwright 1.63.0): translation parity, 20 unit tests, type check and production build passed. Final regression: 128 passed, two desktop touch-only checks intentionally skipped, across five runnable projects. The final symbol-sizing adjustment passed all ten narrow/enlarged-text cases. German 320px WebKit screenshots were visually inspected.
 - Production https://elementris-alpha.vercel.app returned HTTP 200; all 20 desktop/portrait first-time and returning-player flows passed against it. These checks ran against the existing merged production application; PR CSS changes are in the preview.
-- [PR #12](https://github.com/mckc20/elementris/pull/12) has a successful [Vercel preview](https://elementris-git-codex-eafff2-martinacarmenkranzl-1342s-projects.vercel.app), which requires Vercel authentication. Authenticated preview HTML was verified; interactive flows ran against the local production build. Linux CI results are pending.
+- [PR #12](https://github.com/mckc20/elementris/pull/12) has a successful [Vercel preview](https://elementris-git-codex-eafff2-martinacarmenkranzl-1342s-projects.vercel.app), which requires Vercel authentication. Authenticated preview HTML was verified; interactive flows ran against the local production build. Linux CI found an additional enlarged-brand overflow with Linux system fonts; the brand button now wraps within its container. Final cross-platform results are recorded on PR #12.
 
 ## Manual device and accessibility protocol
 

@@ -12,7 +12,7 @@ body { margin: 0; }
   padding: 28px clamp(16px, 5vw, 64px) 20px;
   background-image: radial-gradient(#20332d12 1px, transparent 1px); background-size: 24px 24px;
 }
-.brand { display: flex; align-items: center; font: inherit; font-weight: 750; font-size: 24px; letter-spacing: -1px; border: 0; padding: 0; background: transparent; color: var(--ink); min-height: 44px; cursor: pointer; border-radius: 8px; }
+.brand { display: flex; flex-wrap: wrap; max-width: 100%; align-items: center; font: inherit; font-weight: 750; font-size: 24px; letter-spacing: -1px; border: 0; padding: 0; background: transparent; color: var(--ink); min-height: 44px; cursor: pointer; border-radius: 8px; }
 .brand-mark { display: grid; place-items: center; width: 34px; height: 34px; min-width: 1.2em; min-height: 1.2em; margin-right: 10px; border: 2px solid var(--ink); border-radius: 8px; font-size: 26px; line-height: 1; }
 .brand-dot { color: var(--accent); }
 main { margin: auto; padding: 40px 0; width: 100%; text-align: center; }
